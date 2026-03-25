@@ -23,3 +23,10 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .vercel
+
+# Lighthouse (local reports)
+lighthouse*.report.html
+lighthouse*.report.json
+lighthouse-scores.json
+lighthouse-scores
+lighthouse-report.report.*

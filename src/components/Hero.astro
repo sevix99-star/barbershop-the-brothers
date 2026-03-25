@@ -12,11 +12,17 @@ const { lang } = Astro.props;
   id="home"
   class="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pt-28 md:px-8"
 >
-  <div
-    class="absolute inset-0 bg-cover bg-center"
-    style="background-image: url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1920&q=80');"
+  <!-- Lokalny plik w /public/gallery — bez zewnętrznego URL (np. Unsplash) -->
+  <img
+    src="/gallery/hero-banner.jpg"
+    alt=""
+    class="absolute inset-0 h-full w-full object-cover object-center"
+    width="1920"
+    height="1080"
+    decoding="async"
+    fetchpriority="high"
     aria-hidden="true"
-  ></div>
+  />
   <div class="absolute inset-0 bg-gradient-to-b from-bg/70 via-bg/50 to-bg" aria-hidden="true"></div>
 
   <div class="relative mx-auto flex max-w-4xl flex-col items-center text-center">

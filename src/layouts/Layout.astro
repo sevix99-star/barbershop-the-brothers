@@ -79,6 +79,7 @@ const schemaData = {
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <link rel="preload" as="image" href="/gallery/hero-banner.jpg" />
 
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="nl" href={`${baseUrl}/nl/`} />
@@ -93,12 +94,7 @@ const schemaData = {
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:locale" content={locales[lang]} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fonts via @fontsource: bundled @font-face rules use font-display: swap (no Google Fonts links). -->
 
     <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
   </head>

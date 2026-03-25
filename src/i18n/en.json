@@ -108,7 +108,65 @@
   },
   "gallery": {
     "title": "Cuts from our chair",
-    "instagram": "Follow us on Instagram"
+    "instagram": "Follow us on Instagram",
+    "images": [
+      {
+        "src": "/gallery/interior-1.jpg",
+        "alt": "Inside Barbershop The Brothers, Lelystad: chairs, mirrors, and stations"
+      },
+      {
+        "src": "/gallery/interior-2.jpg",
+        "alt": "Wide view of the shop with a professional barbershop setup"
+      },
+      {
+        "src": "/gallery/interior-3.jpg",
+        "alt": "Interior atmosphere at The Brothers"
+      },
+      {
+        "src": "/gallery/interior-4.jpg",
+        "alt": "Modern barbershop space with a clean, sharp look"
+      },
+      {
+        "src": "/gallery/interior-5.jpg",
+        "alt": "Flooring and layout inside the shop"
+      },
+      {
+        "src": "/gallery/mens-haircut-1.jpg",
+        "alt": "Men's haircut with a clean finish at The Brothers"
+      },
+      {
+        "src": "/gallery/mens-haircut-2.jpg",
+        "alt": "Men's haircut after the cut—sharp lines"
+      },
+      {
+        "src": "/gallery/mens-haircut-3.jpg",
+        "alt": "Men's haircut with neat shape-up and detail"
+      },
+      {
+        "src": "/gallery/mens-haircut-4.jpg",
+        "alt": "Men's hair after cutting—detail and precision"
+      },
+      {
+        "src": "/gallery/mens-haircut-5.jpg",
+        "alt": "Men's haircut from classic to modern"
+      },
+      {
+        "src": "/gallery/kids-haircut-1.jpg",
+        "alt": "Kids haircut at Barbershop The Brothers"
+      },
+      {
+        "src": "/gallery/kids-haircut-2.jpg",
+        "alt": "Children's haircut—tidy and neat"
+      },
+      {
+        "src": "/gallery/coffee.jpg",
+        "alt": "Coffee for clients in the barbershop"
+      },
+      {
+        "src": "/gallery/logo-the-brothers.jpg",
+        "alt": "Barbershop The Brothers logo"
+      }
+    ]
   },
   "booking": {
     "title": "Book ahead or walk in",
