@@ -1,0 +1,64 @@
+---
+import { getTranslations, t, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const mapEmbed =
+  import.meta.env.PUBLIC_MAPS_EMBED ??
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2416.1935551711306!2d5.472984276530858!3d52.51268227206159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c617abf8da2dd9%3A0x8f230e4d9df89f12!2sDe%20Promesse%20113%2C%208232%20VZ%20Lelystad!5e0!3m2!1sen!2snl!4v1700000000000!5m2!1sen!2snl";
+
+const tx = getTranslations(lang).location;
+const dayNames: Record<string, string> = {
+  monday: "Monday",
+  tuesday: "Tuesday",
+  wednesday: "Wednesday",
+  thursday: "Thursday",
+  friday: "Friday",
+  saturday: "Saturday",
+  sunday: "Sunday",
+};
+---
+
+<section id="location" class="px-4 py-24 md:px-8" data-animate>
+  <div class="mx-auto max-w-6xl">
+    <h2 class="section-title">{t(lang, "location.title")}</h2>
+
+    <div class="mt-12 grid gap-8 md:grid-cols-2">
+      <div class="h-[400px] overflow-hidden rounded-2xl">
+        <iframe
+          title="Barbershop location map"
+          src={mapEmbed}
+          width="100%"
+          height="100%"
+          style="border:0;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <article class="rounded-2xl border border-border bg-card p-8">
+        <h3 class="font-heading text-2xl text-text-primary">Openingstijden</h3>
+        <div class="mt-6 space-y-2 border-b border-border pb-6">
+          {
+            Object.entries(tx.hours).map(([day, hours]) => (
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-text-secondary">{dayNames[day] ?? day}</span>
+                <span class="text-text-primary">{hours}</span>
+              </div>
+            ))
+          }
+        </div>
+
+        <address class="mt-6 space-y-3 not-italic text-sm text-text-secondary">
+          <p>📍 {tx.address}</p>
+          <p>📱 WhatsApp: {tx.whatsapp}</p>
+          <p>📧 {tx.email}</p>
+          <p>🚉 {tx.nearStation}</p>
+        </address>
+      </article>
+    </div>
+  </div>
+</section>

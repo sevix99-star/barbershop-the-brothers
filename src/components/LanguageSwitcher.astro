@@ -1,0 +1,40 @@
+---
+import { languages, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const allLangs = Object.entries(languages) as [Lang, string][];
+---
+
+<div class="flex items-center gap-2" aria-label="Language switcher">
+  {
+    allLangs.map(([code, label]) => (
+      <a
+        href={`/${code}/`}
+        data-lang-switch
+        class={`rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider transition ${
+          lang === code
+            ? "border-gold bg-gold text-bg"
+            : "border-border text-text-secondary hover:border-gold hover:text-gold"
+        }`}
+        aria-label={`Switch language to ${label}`}
+      >
+        {code}
+      </a>
+    ))
+  }
+</div>
+
+<script>
+  const switchLinks = document.querySelectorAll("[data-lang-switch]");
+  switchLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (!window.location.hash) return;
+      if (!(event.currentTarget instanceof HTMLAnchorElement)) return;
+      event.currentTarget.href = `${event.currentTarget.href}${window.location.hash}`;
+    });
+  });
+</script>

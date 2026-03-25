@@ -1,0 +1,136 @@
+---
+import "@fontsource/cormorant-garamond/400.css";
+import "@fontsource/cormorant-garamond/600.css";
+import "@fontsource/cormorant-garamond/700.css";
+import "@fontsource/dm-sans/400.css";
+import "@fontsource/dm-sans/500.css";
+import "@fontsource/dm-sans/600.css";
+import "../styles/global.css";
+import { t, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const title = t(lang, "meta.title");
+const description = t(lang, "meta.description");
+const baseUrl = "https://barbershopthebrothers.nl";
+const canonicalUrl = `${baseUrl}/${lang}/`;
+const locales: Record<Lang, string> = {
+  nl: "nl_NL",
+  en: "en_US",
+  pl: "pl_PL",
+};
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Barber",
+  name: "Barbershop The Brothers",
+  image: "https://barbershopthebrothers.nl/og-image.jpg",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "De Promesse 113",
+    addressLocality: "Lelystad",
+    postalCode: "8232 VZ",
+    addressCountry: "NL",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 52.5085,
+    longitude: 5.4774,
+  },
+  url: baseUrl,
+  telephone: "+31-6-00000000",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Monday",
+      opens: "12:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "09:00",
+      closes: "17:00",
+    },
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    reviewCount: "109",
+  },
+  priceRange: "EUR",
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="nl" href={`${baseUrl}/nl/`} />
+    <link rel="alternate" hreflang="en" href={`${baseUrl}/en/`} />
+    <link rel="alternate" hreflang="pl" href={`${baseUrl}/pl/`} />
+    <link rel="alternate" hreflang="x-default" href={`${baseUrl}/nl/`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${baseUrl}/og-image.jpg`} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={locales[lang]} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
+  </head>
+  <body class="bg-bg text-text-primary">
+    <slot />
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+      );
+
+      document.querySelectorAll("[data-animate]").forEach((el) => observer.observe(el));
+
+      const nav = document.getElementById("navbar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          const isScrolled = window.scrollY > 50;
+          nav?.classList.toggle("bg-bg/80", isScrolled);
+          nav?.classList.toggle("backdrop-blur-md", isScrolled);
+          nav?.classList.toggle("shadow-lg", isScrolled);
+        },
+        { passive: true },
+      );
+    </script>
+  </body>
+</html>

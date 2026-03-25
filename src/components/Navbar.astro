@@ -1,0 +1,114 @@
+---
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import { t, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<nav id="navbar" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
+    <a href={`/${lang}/#home`} class="flex items-center gap-2" aria-label="Go to homepage section">
+      <span class="font-heading text-2xl font-bold text-gold">EB</span>
+      <span class="font-body text-text-primary">| The Brothers</span>
+    </a>
+
+    <div class="hidden items-center gap-6 md:flex">
+      <a href={`/${lang}/#home`} class="text-sm text-text-secondary transition hover:text-gold">{t(lang, "nav.home")}</a>
+      <a href={`/${lang}/#services`} class="text-sm text-text-secondary transition hover:text-gold">{t(lang, "nav.services")}</a>
+      <a href={`/${lang}/#prices`} class="text-sm text-text-secondary transition hover:text-gold">{t(lang, "nav.prices")}</a>
+      <a href={`/${lang}/#gallery`} class="text-sm text-text-secondary transition hover:text-gold">{t(lang, "nav.gallery")}</a>
+      <a href={`/${lang}/#booking`} class="text-sm text-text-secondary transition hover:text-gold">{t(lang, "nav.bookNow")}</a>
+      <LanguageSwitcher lang={lang} />
+      <a
+        href={`/${lang}/#booking`}
+        class="rounded-full bg-gold px-6 py-2 font-semibold text-bg transition hover:bg-gold-hover"
+      >
+        {t(lang, "nav.appointment")}
+      </a>
+    </div>
+
+    <button
+      id="mobile-menu-button"
+      type="button"
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-text-primary md:hidden"
+      aria-label="Open menu"
+    >
+      <span class="sr-only">Open navigation menu</span>
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="pointer-events-none absolute right-4 top-16 w-64 translate-x-8 rounded-2xl border border-border bg-surface p-4 opacity-0 shadow-xl transition-all duration-300 md:hidden"
+  >
+    <div class="flex flex-col gap-3">
+      <a href={`/${lang}/#home`} class="text-text-secondary transition hover:text-gold">{t(lang, "nav.home")}</a>
+      <a href={`/${lang}/#services`} class="text-text-secondary transition hover:text-gold">{t(lang, "nav.services")}</a>
+      <a href={`/${lang}/#prices`} class="text-text-secondary transition hover:text-gold">{t(lang, "nav.prices")}</a>
+      <a href={`/${lang}/#gallery`} class="text-text-secondary transition hover:text-gold">{t(lang, "nav.gallery")}</a>
+      <a href={`/${lang}/#booking`} class="text-text-secondary transition hover:text-gold">{t(lang, "nav.bookNow")}</a>
+      <div class="pt-2">
+        <LanguageSwitcher lang={lang} />
+      </div>
+      <a
+        href={`/${lang}/#booking`}
+        class="mt-2 rounded-full bg-gold px-6 py-2 text-center font-semibold text-bg transition hover:bg-gold-hover"
+      >
+        {t(lang, "nav.appointment")}
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const button = document.getElementById("mobile-menu-button");
+  const menu = document.getElementById("mobile-menu");
+  const links = menu?.querySelectorAll("a");
+
+  const closeMenu = () => {
+    menu?.classList.add("pointer-events-none", "opacity-0", "translate-x-8");
+  };
+
+  const openMenu = () => {
+    menu?.classList.remove("pointer-events-none", "opacity-0", "translate-x-8");
+  };
+
+  let isOpen = false;
+  button?.addEventListener("click", () => {
+    isOpen = !isOpen;
+    if (isOpen) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  links?.forEach((link) => {
+    link.addEventListener("click", () => {
+      isOpen = false;
+      closeMenu();
+    });
+  });
+
+  window.addEventListener("hashchange", () => {
+    isOpen = false;
+    closeMenu();
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!menu || !button) return;
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    if (!menu.contains(target) && !button.contains(target)) {
+      isOpen = false;
+      closeMenu();
+    }
+  });
+</script>

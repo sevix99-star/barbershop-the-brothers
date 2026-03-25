@@ -1,0 +1,44 @@
+---
+import { t, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const bookingUrl =
+  import.meta.env.PUBLIC_BOOKING_URL ?? "https://www.fresha.com/a/barbershop-the-brothers-lelystad";
+const whatsapp = (import.meta.env.PUBLIC_WHATSAPP ?? "+31600000000").replace(/[^\d]/g, "");
+---
+
+<section id="booking" class="px-4 py-24 md:px-8" data-animate>
+  <div class="mx-auto max-w-6xl">
+    <h2 class="section-title">{t(lang, "booking.title")}</h2>
+
+    <div class="mt-12 grid gap-8 md:grid-cols-2">
+      <div class="flex h-[500px] flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm shadow-xl">
+        <p class="text-text-secondary">{t(lang, "booking.fallback")}</p>
+        <a
+          href={bookingUrl}
+          target="_blank"
+          rel="noreferrer"
+          class="mt-4 inline-flex rounded-full border border-gold px-6 py-2 text-gold transition hover:bg-gold hover:text-bg"
+        >
+          Fresha
+        </a>
+      </div>
+
+      <article class="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm shadow-xl">
+        <h3 class="font-heading text-3xl text-text-primary">{t(lang, "booking.whatsapp")}</h3>
+        <p class="mt-4 text-text-secondary">{t(lang, "booking.walkIn")}</p>
+        <a
+          href={`https://wa.me/${whatsapp}`}
+          class="mt-8 inline-flex rounded-full bg-whatsapp px-8 py-4 text-lg font-semibold text-white transition hover:bg-whatsapp/90"
+          aria-label="Book through WhatsApp"
+        >
+          WhatsApp
+        </a>
+      </article>
+    </div>
+  </div>
+</section>

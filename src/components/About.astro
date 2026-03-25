@@ -1,0 +1,46 @@
+---
+import { getTranslations, t, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const tx = getTranslations(lang);
+
+const values = [tx.about.value1, tx.about.value2, tx.about.value3];
+---
+
+<section id="about" class="px-4 py-24 md:px-8" data-animate>
+  <div class="mx-auto max-w-6xl">
+    <h2 class="section-title">{t(lang, "about.title")}</h2>
+    <p class="mt-8 max-w-3xl text-lg text-text-secondary">{t(lang, "about.description")}</p>
+
+    <div class="mt-14 grid gap-8 md:grid-cols-3">
+      {
+        values.map((value, idx) => (
+          <article class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-gold/30 hover:bg-white/10">
+            {idx === 0 && (
+              <svg class="h-12 w-12 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M14 4l6 6m-8 2l8-8M4 20l6-6M2 22l8-8"></path>
+              </svg>
+            )}
+            {idx === 1 && (
+              <svg class="h-12 w-12 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M4 11v8h16v-8"></path>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            )}
+            {idx === 2 && (
+              <svg class="h-12 w-12 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M12 3v18M6 7h8a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h9"></path>
+              </svg>
+            )}
+            <h3 class="mt-5 font-heading text-2xl text-text-primary">{value.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-text-secondary">{value.desc}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

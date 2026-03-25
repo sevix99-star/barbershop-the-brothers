@@ -1,0 +1,52 @@
+---
+import { t, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const images = [
+  "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80",
+  "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80",
+  "https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80",
+  "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&q=80",
+  "https://images.unsplash.com/photo-1541533260272-c28f3cb29a00?w=600&q=80",
+  "https://images.unsplash.com/photo-1593702288056-7927b442d0fa?w=600&q=80",
+  "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=600&q=80",
+  "https://images.unsplash.com/photo-1512690459411-b0fd1c86b8ac?w=600&q=80",
+  "https://images.unsplash.com/photo-1622296089863-eb7fc530daa8?w=600&q=80",
+];
+---
+
+<section id="gallery" class="px-4 py-24 md:px-8" data-animate>
+  <div class="mx-auto max-w-6xl">
+    <h2 class="section-title">{t(lang, "gallery.title")}</h2>
+
+    <div class="mt-12 grid grid-cols-2 gap-2 md:grid-cols-3">
+      {
+        images.map((image, idx) => (
+          <div class="group relative aspect-square overflow-hidden rounded-lg">
+            <img
+              src={image}
+              alt={`${t(lang, "gallery.title")} ${idx + 1}`}
+              class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-gold/10 opacity-0 transition group-hover:opacity-100"></div>
+          </div>
+        ))
+      }
+    </div>
+
+    <a
+      href="https://instagram.com/_thebrothersbarbershop"
+      target="_blank"
+      rel="noreferrer"
+      class="mt-8 inline-flex text-gold transition hover:text-gold-hover"
+    >
+      {t(lang, "gallery.instagram")}: @_thebrothersbarbershop
+    </a>
+  </div>
+</section>

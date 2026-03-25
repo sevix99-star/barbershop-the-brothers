@@ -1,0 +1,43 @@
+---
+import { t, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<footer class="border-t border-border bg-surface px-4 py-14 md:px-8">
+  <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-3">
+    <div>
+      <p class="font-heading text-3xl text-gold">EB | The Brothers</p>
+      <p class="mt-3 text-sm text-text-secondary">{t(lang, "footer.tagline")}</p>
+      <p class="mt-4 text-sm text-text-secondary">{t(lang, "footer.kvk")}</p>
+    </div>
+
+    <div>
+      <p class="font-semibold text-text-primary">{t(lang, "footer.quickLinks")}</p>
+      <ul class="mt-3 space-y-2 text-sm text-text-secondary">
+        <li><a href={`/${lang}/#home`} class="transition hover:text-gold">{t(lang, "nav.home")}</a></li>
+        <li><a href={`/${lang}/#services`} class="transition hover:text-gold">{t(lang, "nav.services")}</a></li>
+        <li><a href={`/${lang}/#prices`} class="transition hover:text-gold">{t(lang, "nav.prices")}</a></li>
+        <li><a href={`/${lang}/#gallery`} class="transition hover:text-gold">{t(lang, "nav.gallery")}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="font-semibold text-text-primary">{t(lang, "footer.socials")}</p>
+      <div class="mt-3 flex flex-col gap-2 text-sm text-text-secondary">
+        <a href="https://instagram.com/_thebrothersbarbershop" target="_blank" rel="noreferrer" class="transition hover:text-gold">Instagram (@_thebrothersbarbershop)</a>
+        <a href="https://tiktok.com" target="_blank" rel="noreferrer" class="transition hover:text-gold">TikTok</a>
+        <a href="https://facebook.com" target="_blank" rel="noreferrer" class="transition hover:text-gold">Facebook</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-10 max-w-6xl border-t border-border pt-6 text-sm text-text-secondary">
+    <p>{t(lang, "footer.copyright")}</p>
+    <p class="mt-1">{t(lang, "footer.madeWith")}</p>
+  </div>
+</footer>

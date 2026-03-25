@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "title": "Barbershop The Brothers | Herenkapper in Lelystad",
+    "description": "Strak geknipt, nette fades en verzorgde baarden in Lelystad. Boek je afspraak of loop gezellig binnen."
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "prices": "Prijzen",
+    "gallery": "Galerij",
+    "bookNow": "Boek Nu",
+    "appointment": "Afspraak"
+  },
+  "hero": {
+    "headline": "Jouw vaste barbershop in Lelystad",
+    "subline": "PRECISIE, STIJL, VAKMANSCHAP",
+    "ctaPrimary": "Plan je afspraak",
+    "ctaSecondary": "Bekijk prijzen",
+    "badge": "5.0 beoordeling uit 109 Google reviews",
+    "address": "De Promesse 113, 8232 VZ Lelystad"
+  },
+  "about": {
+    "title": "Wie wij zijn",
+    "description": "Bij The Brothers nemen we tijd voor goed werk. Geen haast, wel aandacht voor jouw look.",
+    "value1": {
+      "title": "Strakke details",
+      "desc": "Van contour tot fade: elke lijn moet kloppen."
+    },
+    "value2": {
+      "title": "Relaxte sfeer",
+      "desc": "Koffie, goed gesprek en een stoel waar je graag terugkomt."
+    },
+    "value3": {
+      "title": "Eerlijke prijzen",
+      "desc": "Duidelijke tarieven zonder verrassingen achteraf."
+    }
+  },
+  "services": {
+    "title": "Onze services",
+    "items": [
+      {
+        "id": "haircut",
+        "name": "Heren knippen",
+        "desc": "Klassiek of modern, afgestemd op jouw stijl.",
+        "price": "€25"
+      },
+      {
+        "id": "beard",
+        "name": "Baard trimmen & shapen",
+        "desc": "Scherpe lijnen en een verzorgde baardvorm.",
+        "price": "€15"
+      },
+      {
+        "id": "fade",
+        "name": "Fade & Skin Fade",
+        "desc": "Naadloze overgangen met precieze afwerking.",
+        "price": "€30"
+      },
+      {
+        "id": "kids",
+        "name": "Kinderknippen",
+        "desc": "Rustig en netjes geknipt voor jonge klanten.",
+        "price": "€18"
+      },
+      {
+        "id": "wash",
+        "name": "Haar wassen & stylen",
+        "desc": "Fris gewassen en direct in model gebracht.",
+        "price": "€10"
+      },
+      {
+        "id": "combo",
+        "name": "Combi: haar + baard",
+        "desc": "Complete look in een enkele afspraak.",
+        "price": "€35"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Prijslijst",
+    "note": "Prijzen kunnen licht verschillen bij extra styling of speciale verzoeken.",
+    "items": [
+      {
+        "service": "Heren knippen",
+        "price": "€25"
+      },
+      {
+        "service": "Baard trimmen & shapen",
+        "price": "€15"
+      },
+      {
+        "service": "Fade & Skin Fade",
+        "price": "€30"
+      },
+      {
+        "service": "Kinderknippen",
+        "price": "€18"
+      },
+      {
+        "service": "Haar wassen & stylen",
+        "price": "€10"
+      },
+      {
+        "service": "Combi: haar + baard",
+        "price": "€35"
+      }
+    ]
+  },
+  "gallery": {
+    "title": "Resultaten uit de stoel",
+    "instagram": "Volg ons op Instagram"
+  },
+  "booking": {
+    "title": "Boeken of direct langskomen",
+    "fallback": "Boek je afspraak online via Fresha",
+    "whatsapp": "Stuur ons op WhatsApp",
+    "walkIn": "Geen afspraak? Loop gerust binnen!"
+  },
+  "reviews": {
+    "title": "Wat klanten zeggen",
+    "viewAll": "Bekijk alle 109 reviews op Google ->",
+    "items": [
+      {
+        "text": "Best haircut I've had since I've moved to the Netherlands. Great place, will definitely come back!",
+        "name": "M. Johnson",
+        "date": "2024"
+      },
+      {
+        "text": "Great service! I was welcomed, offered water and coffee before my cut. Very professional team.",
+        "name": "A. de Vries",
+        "date": "2024"
+      },
+      {
+        "text": "Amazing place... super efficient and professional. Atmosphere is amazing. Highly recommend!",
+        "name": "K. Nowak",
+        "date": "2024"
+      }
+    ]
+  },
+  "location": {
+    "title": "Locatie & openingstijden",
+    "hours": {
+      "monday": "12:00 - 18:00",
+      "tuesday": "09:00 - 18:00",
+      "wednesday": "09:00 - 18:00",
+      "thursday": "09:00 - 18:00",
+      "friday": "09:00 - 18:00",
+      "saturday": "09:00 - 17:00",
+      "sunday": "Gesloten"
+    },
+    "nearStation": "2 minuten lopen van Station Lelystad Centrum",
+    "email": "info@barbershopthebrothers.nl",
+    "whatsapp": "+31 6 1234 5678",
+    "address": "De Promesse 113, 8232 VZ Lelystad"
+  },
+  "footer": {
+    "tagline": "Strakke cuts, goede sfeer, altijd welkom.",
+    "kvk": "KVK: 12345678",
+    "copyright": "© 2026 Barbershop The Brothers - Lelystad",
+    "madeWith": "Gemaakt met vakmanschap in Lelystad",
+    "quickLinks": "Snelle links",
+    "socials": "Social"
+  }
+}

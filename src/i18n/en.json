@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "title": "Barbershop The Brothers | Barber in Lelystad",
+    "description": "Sharp cuts, clean fades, and tidy beard work in Lelystad. Book your slot or walk in anytime."
+  },
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "prices": "Prices",
+    "gallery": "Gallery",
+    "bookNow": "Book Now",
+    "appointment": "Appointment"
+  },
+  "hero": {
+    "headline": "Your go-to barbershop in Lelystad",
+    "subline": "PRECISION, STYLE, CRAFT",
+    "ctaPrimary": "Book your appointment",
+    "ctaSecondary": "See pricing",
+    "badge": "5.0 rating from 109 Google reviews",
+    "address": "De Promesse 113, 8232 VZ Lelystad"
+  },
+  "about": {
+    "title": "Who we are",
+    "description": "At The Brothers, we focus on clean results and a relaxed experience. Good service, no rush.",
+    "value1": {
+      "title": "Detail-driven cuts",
+      "desc": "From hairline to fade blend, every finish is done with care."
+    },
+    "value2": {
+      "title": "Easy atmosphere",
+      "desc": "Grab a coffee, settle in, and leave looking fresh."
+    },
+    "value3": {
+      "title": "Clear pricing",
+      "desc": "Straightforward prices so you always know what to expect."
+    }
+  },
+  "services": {
+    "title": "Our services",
+    "items": [
+      {
+        "id": "haircut",
+        "name": "Men's Haircut",
+        "desc": "Classic or modern style, matched to your hair and routine.",
+        "price": "€25"
+      },
+      {
+        "id": "beard",
+        "name": "Beard Trim & Shape",
+        "desc": "Clean shape-up with balanced lines and neat contours.",
+        "price": "€15"
+      },
+      {
+        "id": "fade",
+        "name": "Fade & Skin Fade",
+        "desc": "Smooth blends and a crisp, polished finish.",
+        "price": "€30"
+      },
+      {
+        "id": "kids",
+        "name": "Kids Haircut",
+        "desc": "Comfortable and clean cuts for younger customers.",
+        "price": "€18"
+      },
+      {
+        "id": "wash",
+        "name": "Hair Wash & Style",
+        "desc": "Fresh wash and practical styling before you head out.",
+        "price": "€10"
+      },
+      {
+        "id": "combo",
+        "name": "Combo: Hair + Beard",
+        "desc": "A full grooming session in one appointment.",
+        "price": "€35"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Price list",
+    "note": "Prices may vary slightly for extra styling or specific requests.",
+    "items": [
+      {
+        "service": "Men's Haircut",
+        "price": "€25"
+      },
+      {
+        "service": "Beard Trim & Shape",
+        "price": "€15"
+      },
+      {
+        "service": "Fade & Skin Fade",
+        "price": "€30"
+      },
+      {
+        "service": "Kids Haircut",
+        "price": "€18"
+      },
+      {
+        "service": "Hair Wash & Style",
+        "price": "€10"
+      },
+      {
+        "service": "Combo: Hair + Beard",
+        "price": "€35"
+      }
+    ]
+  },
+  "gallery": {
+    "title": "Cuts from our chair",
+    "instagram": "Follow us on Instagram"
+  },
+  "booking": {
+    "title": "Book ahead or walk in",
+    "fallback": "Book your appointment online via Fresha",
+    "whatsapp": "Message us on WhatsApp",
+    "walkIn": "No appointment? Feel free to walk in!"
+  },
+  "reviews": {
+    "title": "What clients say",
+    "viewAll": "View all 109 reviews on Google ->",
+    "items": [
+      {
+        "text": "Best haircut I've had since I've moved to the Netherlands. Great place, will definitely come back!",
+        "name": "M. Johnson",
+        "date": "2024"
+      },
+      {
+        "text": "Great service! I was welcomed, offered water and coffee before my cut. Very professional team.",
+        "name": "A. de Vries",
+        "date": "2024"
+      },
+      {
+        "text": "Amazing place... super efficient and professional. Atmosphere is amazing. Highly recommend!",
+        "name": "K. Nowak",
+        "date": "2024"
+      }
+    ]
+  },
+  "location": {
+    "title": "Location & opening hours",
+    "hours": {
+      "monday": "12:00 - 18:00",
+      "tuesday": "09:00 - 18:00",
+      "wednesday": "09:00 - 18:00",
+      "thursday": "09:00 - 18:00",
+      "friday": "09:00 - 18:00",
+      "saturday": "09:00 - 17:00",
+      "sunday": "Closed"
+    },
+    "nearStation": "2 minutes on foot from Lelystad Centrum Station",
+    "email": "info@barbershopthebrothers.nl",
+    "whatsapp": "+31 6 1234 5678",
+    "address": "De Promesse 113, 8232 VZ Lelystad"
+  },
+  "footer": {
+    "tagline": "Sharp cuts, relaxed vibe, always welcome.",
+    "kvk": "KVK: 12345678",
+    "copyright": "© 2026 Barbershop The Brothers - Lelystad",
+    "madeWith": "Made with craftsmanship in Lelystad",
+    "quickLinks": "Quick links",
+    "socials": "Social"
+  }
+}

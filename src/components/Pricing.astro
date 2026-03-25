@@ -1,0 +1,29 @@
+---
+import { getTranslations, t, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const items = getTranslations(lang).pricing.items;
+---
+
+<section id="prices" class="bg-surface px-4 py-24 md:px-8" data-animate>
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="section-title">{t(lang, "pricing.title")}</h2>
+    <div class="mt-12 rounded-2xl border border-white/10 bg-white/5 p-8 text-left backdrop-blur-sm shadow-lg">
+      <div class="w-full">
+        {
+          items.map((item) => (
+            <div class="flex items-center justify-between border-b border-border py-3 last:border-0">
+              <span class="text-text-primary">{item.service}</span>
+              <span class="font-semibold text-gold">{item.price}</span>
+            </div>
+          ))
+        }
+      </div>
+      <p class="mt-6 text-sm italic text-text-secondary">{t(lang, "pricing.note")}</p>
+    </div>
+  </div>
+</section>

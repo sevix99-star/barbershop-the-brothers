@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "title": "Barbershop The Brothers | Barber w Lelystad",
+    "description": "Porzadne ciecie, czyste fade'y i ogarnieta broda w Lelystad. Zarezerwuj termin albo wpadaj z marszu."
+  },
+  "nav": {
+    "home": "Start",
+    "services": "Uslugi",
+    "prices": "Cennik",
+    "gallery": "Galeria",
+    "bookNow": "Rezerwuj",
+    "appointment": "Wizyta"
+  },
+  "hero": {
+    "headline": "Twoj sprawdzony barbershop w Lelystad",
+    "subline": "PRECYZJA, STYL, RZEMIOSLO",
+    "ctaPrimary": "Umow termin",
+    "ctaSecondary": "Sprawdz cennik",
+    "badge": "Ocena 5.0 na podstawie 109 opinii Google",
+    "address": "De Promesse 113, 8232 VZ Lelystad"
+  },
+  "about": {
+    "title": "Kim jestesmy",
+    "description": "W The Brothers stawiamy na porzadne strzyzenie i luzna atmosfere. Bez napinki, za to z efektem.",
+    "value1": {
+      "title": "Dopiete detale",
+      "desc": "Kontur, przejscie, linia brody - wszystko ma sie zgadzac."
+    },
+    "value2": {
+      "title": "Przyjemny klimat",
+      "desc": "Kawa, rozmowa i fotel, do ktorego chce sie wracac."
+    },
+    "value3": {
+      "title": "Jasne ceny",
+      "desc": "Konkretny cennik bez niespodzianek przy kasie."
+    }
+  },
+  "services": {
+    "title": "Nasze uslugi",
+    "items": [
+      {
+        "id": "haircut",
+        "name": "Strzyzenie meskie",
+        "desc": "Klasycznie albo nowoczesnie - pod Ciebie i Twoj styl.",
+        "price": "€25"
+      },
+      {
+        "id": "beard",
+        "name": "Trymowanie brody",
+        "desc": "Czysty ksztalt i rowne linie dla schludnego efektu.",
+        "price": "€15"
+      },
+      {
+        "id": "fade",
+        "name": "Fade & Skin Fade",
+        "desc": "Plynne przejscia i ostre wykonczenie.",
+        "price": "€30"
+      },
+      {
+        "id": "kids",
+        "name": "Strzyzenie dzieciece",
+        "desc": "Spokojnie, sprawnie i z dobrym podejsciem do mlodych.",
+        "price": "€18"
+      },
+      {
+        "id": "wash",
+        "name": "Mycie i stylizacja",
+        "desc": "Szybkie odswiezenie i ukladanie przed wyjsciem.",
+        "price": "€10"
+      },
+      {
+        "id": "combo",
+        "name": "Combo: strzyzenie + broda",
+        "desc": "Pelny zestaw w jednej wizycie.",
+        "price": "€35"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Cennik",
+    "note": "Cena moze sie lekko roznic przy dodatkowej stylizacji lub nietypowej prosbie.",
+    "items": [
+      {
+        "service": "Strzyzenie meskie",
+        "price": "€25"
+      },
+      {
+        "service": "Trymowanie brody",
+        "price": "€15"
+      },
+      {
+        "service": "Fade & Skin Fade",
+        "price": "€30"
+      },
+      {
+        "service": "Strzyzenie dzieciece",
+        "price": "€18"
+      },
+      {
+        "service": "Mycie i stylizacja",
+        "price": "€10"
+      },
+      {
+        "service": "Combo: strzyzenie + broda",
+        "price": "€35"
+      }
+    ]
+  },
+  "gallery": {
+    "title": "Efekty naszej pracy",
+    "instagram": "Obserwuj nas na Instagramie"
+  },
+  "booking": {
+    "title": "Rezerwacja albo wejscie z ulicy",
+    "fallback": "Zarezerwuj wizyte online przez Fresha",
+    "whatsapp": "Napisz do nas na WhatsApp",
+    "walkIn": "Nie masz terminu? Wpadaj smialo!"
+  },
+  "reviews": {
+    "title": "Co mowia klienci",
+    "viewAll": "Zobacz wszystkie 109 opinii w Google ->",
+    "items": [
+      {
+        "text": "Best haircut I've had since I've moved to the Netherlands. Great place, will definitely come back!",
+        "name": "M. Johnson",
+        "date": "2024"
+      },
+      {
+        "text": "Great service! I was welcomed, offered water and coffee before my cut. Very professional team.",
+        "name": "A. de Vries",
+        "date": "2024"
+      },
+      {
+        "text": "Amazing place... super efficient and professional. Atmosphere is amazing. Highly recommend!",
+        "name": "K. Nowak",
+        "date": "2024"
+      }
+    ]
+  },
+  "location": {
+    "title": "Lokalizacja i godziny otwarcia",
+    "hours": {
+      "monday": "12:00 - 18:00",
+      "tuesday": "09:00 - 18:00",
+      "wednesday": "09:00 - 18:00",
+      "thursday": "09:00 - 18:00",
+      "friday": "09:00 - 18:00",
+      "saturday": "09:00 - 17:00",
+      "sunday": "Zamkniete"
+    },
+    "nearStation": "2 minuty pieszo od stacji Lelystad Centrum",
+    "email": "info@barbershopthebrothers.nl",
+    "whatsapp": "+31 6 1234 5678",
+    "address": "De Promesse 113, 8232 VZ Lelystad"
+  },
+  "footer": {
+    "tagline": "Dobre ciecie, luzna atmosfera i konkretna robota.",
+    "kvk": "KVK: 12345678",
+    "copyright": "© 2026 Barbershop The Brothers - Lelystad",
+    "madeWith": "Zrobione z rzemioslem w Lelystad",
+    "quickLinks": "Szybkie linki",
+    "socials": "Social media"
+  }
+}
