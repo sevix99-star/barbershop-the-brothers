@@ -11,15 +11,15 @@ const reviews = getTranslations(lang).reviews.items;
 
 <section id="reviews" class="px-4 py-24 md:px-8" data-animate>
   <div class="mx-auto max-w-6xl">
-    <h2 class="section-title">{t(lang, "reviews.title")}</h2>
+    <h2 class="section-title section-title--left">{t(lang, "reviews.title")}</h2>
 
     <div class="mt-12 grid gap-6 md:grid-cols-3">
       {
         reviews.map((review) => (
           <article class="rounded-2xl border border-border bg-card p-6">
-            <div class="mb-4 flex gap-1 text-gold" aria-hidden="true">
+            <div class="mb-4 flex gap-1 text-gold" role="img" aria-label="5 out of 5 stars">
               {Array.from({ length: 5 }).map(() => (
-                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path d="M9.05 2.93c.3-.92 1.6-.92 1.9 0l1.1 3.4a1 1 0 0 0 .95.69h3.58c.97 0 1.37 1.24.58 1.81l-2.9 2.1a1 1 0 0 0-.36 1.12l1.1 3.39c.3.93-.75 1.7-1.54 1.12l-2.9-2.1a1 1 0 0 0-1.18 0l-2.9 2.1c-.79.58-1.84-.2-1.54-1.12l1.1-3.39a1 1 0 0 0-.36-1.12l-2.9-2.1c-.79-.57-.39-1.8.58-1.8h3.58a1 1 0 0 0 .95-.7z"></path>
                 </svg>
               ))}
@@ -33,10 +33,11 @@ const reviews = getTranslations(lang).reviews.items;
     </div>
 
     <a
-      href="https://maps.app.goo.gl"
+      href="https://www.google.com/maps/place/De+Promesse+113,+8232+VZ+Lelystad"
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       class="mt-8 inline-flex text-gold transition hover:text-gold-hover"
+      aria-label={`${t(lang, "reviews.viewAll")} (opens in new tab)`}
     >
       {t(lang, "reviews.viewAll")}
     </a>

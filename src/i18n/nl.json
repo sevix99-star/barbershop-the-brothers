@@ -197,6 +197,16 @@
   },
   "location": {
     "title": "Locatie & openingstijden",
+    "openingHours": "Openingstijden",
+    "days": {
+      "monday": "Maandag",
+      "tuesday": "Dinsdag",
+      "wednesday": "Woensdag",
+      "thursday": "Donderdag",
+      "friday": "Vrijdag",
+      "saturday": "Zaterdag",
+      "sunday": "Zondag"
+    },
     "hours": {
       "monday": "12:00 - 18:00",
       "tuesday": "09:00 - 18:00",

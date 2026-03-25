@@ -96,9 +96,14 @@ const schemaData = {
 
     <!-- Fonts via @fontsource: bundled @font-face rules use font-display: swap (no Google Fonts links). -->
 
+    <meta name="theme-color" content="#0A0A0A" />
+
     <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
   </head>
   <body class="bg-bg text-text-primary">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-gold focus:px-4 focus:py-2 focus:text-bg focus:outline-none">
+      Skip to content
+    </a>
     <slot />
 
     <script>

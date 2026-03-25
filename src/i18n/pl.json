@@ -197,6 +197,16 @@
   },
   "location": {
     "title": "Lokalizacja i godziny otwarcia",
+    "openingHours": "Godziny otwarcia",
+    "days": {
+      "monday": "Poniedzialek",
+      "tuesday": "Wtorek",
+      "wednesday": "Sroda",
+      "thursday": "Czwartek",
+      "friday": "Piatek",
+      "saturday": "Sobota",
+      "sunday": "Niedziela"
+    },
     "hours": {
       "monday": "12:00 - 18:00",
       "tuesday": "09:00 - 18:00",
