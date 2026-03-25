@@ -197,6 +197,16 @@
   },
   "location": {
     "title": "Location & opening hours",
+    "openingHours": "Opening hours",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
     "hours": {
       "monday": "12:00 - 18:00",
       "tuesday": "09:00 - 18:00",

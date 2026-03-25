@@ -9,7 +9,7 @@ const { lang } = Astro.props;
 const allLangs = Object.entries(languages) as [Lang, string][];
 ---
 
-<div class="flex items-center gap-2" aria-label="Language switcher">
+<nav class="flex items-center gap-2" aria-label="Language switcher">
   {
     allLangs.map(([code, label]) => (
       <a
@@ -26,7 +26,7 @@ const allLangs = Object.entries(languages) as [Lang, string][];
       </a>
     ))
   }
-</div>
+</nav>
 
 <script>
   const switchLinks = document.querySelectorAll("[data-lang-switch]");
@@ -34,7 +34,10 @@ const allLangs = Object.entries(languages) as [Lang, string][];
     link.addEventListener("click", (event) => {
       if (!window.location.hash) return;
       if (!(event.currentTarget instanceof HTMLAnchorElement)) return;
-      event.currentTarget.href = `${event.currentTarget.href}${window.location.hash}`;
+      const anchor = event.currentTarget;
+      const url = new URL(anchor.href, window.location.origin);
+      url.hash = window.location.hash;
+      anchor.href = url.toString();
     });
   });
 </script>

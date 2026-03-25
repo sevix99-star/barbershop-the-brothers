@@ -11,7 +11,7 @@ const images = getTranslations(lang).gallery.images;
 
 <section id="gallery" class="px-4 py-24 md:px-8" data-animate>
   <div class="mx-auto max-w-6xl">
-    <h2 class="section-title">{t(lang, "gallery.title")}</h2>
+    <h2 class="section-title section-title--left">{t(lang, "gallery.title")}</h2>
 
     <div class="mt-12 grid grid-cols-2 gap-2 md:grid-cols-3">
       {
@@ -23,6 +23,8 @@ const images = getTranslations(lang).gallery.images;
               class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
               loading="lazy"
               decoding="async"
+              width="600"
+              height="600"
             />
             <div class="absolute inset-0 bg-gold/10 opacity-0 transition group-hover:opacity-100"></div>
           </div>
@@ -33,8 +35,9 @@ const images = getTranslations(lang).gallery.images;
     <a
       href="https://www.instagram.com/barbershop.the.brothers.eb/"
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       class="mt-8 inline-flex text-gold transition hover:text-gold-hover"
+      aria-label={`${t(lang, "gallery.instagram")} (opens in new tab)`}
     >
       {t(lang, "gallery.instagram")}: @barbershop.the.brothers.eb
     </a>
