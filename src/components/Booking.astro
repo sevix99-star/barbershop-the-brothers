@@ -23,7 +23,6 @@ const whatsapp = (import.meta.env.PUBLIC_WHATSAPP ?? "+31600000000").replace(/[^
           target="_blank"
           rel="noopener noreferrer"
           class="mt-4 inline-flex rounded-full border border-gold px-6 py-2 text-gold transition hover:bg-gold hover:text-bg"
-          aria-label="Book on Fresha (opens in new tab)"
         >
           Fresha
         </a>
@@ -34,8 +33,9 @@ const whatsapp = (import.meta.env.PUBLIC_WHATSAPP ?? "+31600000000").replace(/[^
         <p class="mt-4 text-text-secondary">{t(lang, "booking.walkIn")}</p>
         <a
           href={`https://wa.me/${whatsapp}`}
-          class="mt-8 inline-flex rounded-full bg-whatsapp px-8 py-4 text-lg font-semibold text-white transition hover:bg-whatsapp/90"
-          aria-label="Book through WhatsApp"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-8 inline-flex rounded-full bg-[#075E30] px-8 py-4 text-lg font-semibold text-white transition hover:brightness-110"
         >
           WhatsApp
         </a>

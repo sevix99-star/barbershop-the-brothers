@@ -20,7 +20,7 @@ const allLangs = Object.entries(languages) as [Lang, string][];
             ? "border-gold bg-gold text-bg"
             : "border-border text-text-secondary hover:border-gold hover:text-gold"
         }`}
-        aria-label={`Switch language to ${label}`}
+        aria-label={`${label} (${code.toUpperCase()})`}
       >
         {code}
       </a>

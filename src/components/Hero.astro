@@ -23,10 +23,10 @@ const { lang } = Astro.props;
     fetchpriority="high"
     aria-hidden="true"
   />
-  <div class="absolute inset-0 bg-gradient-to-b from-bg/70 via-bg/50 to-bg" aria-hidden="true"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-bg/90 via-bg/65 to-bg" aria-hidden="true"></div>
 
   <div class="relative mx-auto flex max-w-4xl flex-col items-center text-center">
-    <p class="hero-animate mb-4 text-sm uppercase tracking-[0.35em] text-text-secondary" style="animation-delay: 0ms;">
+    <p class="hero-animate mb-4 text-sm uppercase tracking-[0.35em] text-text-primary/85" style="animation-delay: 0ms;">
       {t(lang, "hero.subline")}
     </p>
     <h1
@@ -55,7 +55,7 @@ const { lang } = Astro.props;
     >
       ★ {t(lang, "hero.badge")}
     </div>
-    <div class="hero-animate mt-4 flex items-center gap-2 text-text-secondary" style="animation-delay: 600ms;">
+    <div class="hero-animate mt-4 flex items-center gap-2 text-text-primary/85" style="animation-delay: 600ms;">
       <svg class="h-5 w-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"></path>
         <circle cx="12" cy="10" r="2.5"></circle>

@@ -10,7 +10,7 @@ export default {
         gold: "#C9A84C",
         "gold-hover": "#E2C06B",
         border: "#2A2A2A",
-        whatsapp: "#25D366",
+        whatsapp: "#075E30",
         "text-primary": "#F5F5F5",
         "text-secondary": "#9CA3AF",
       },

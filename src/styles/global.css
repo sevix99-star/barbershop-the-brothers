@@ -7,7 +7,8 @@
   --color-gold: #C9A84C;
   --color-gold-hover: #E2C06B;
   --color-border: #2A2A2A;
-  --color-whatsapp: #25D366;
+  /* #128C4A + #fff ≈ 4.31:1 (below 4.5 for normal text). #075E30 + #fff ≈ 7.9:1 — WCAG AA. */
+  --color-whatsapp: #075e30;
   --color-text-primary: #F5F5F5;
   --color-text-secondary: #9CA3AF;
   --font-heading: "Cormorant Garamond", serif;
