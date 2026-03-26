@@ -108,65 +108,7 @@
   },
   "gallery": {
     "title": "Resultaten uit de stoel",
-    "instagram": "Volg ons op Instagram",
-    "images": [
-      {
-        "src": "/gallery/interior-1.jpg",
-        "alt": "Interieur van Barbershop The Brothers in Lelystad: kappersstoelen, spiegels en werkplekken"
-      },
-      {
-        "src": "/gallery/interior-2.jpg",
-        "alt": "Overzicht van de winkel met professionele barbershop-inrichting"
-      },
-      {
-        "src": "/gallery/interior-3.jpg",
-        "alt": "Sfeerbeeld van het interieur van The Brothers"
-      },
-      {
-        "src": "/gallery/interior-4.jpg",
-        "alt": "Moderne barbershopruimte met strakke uitstraling"
-      },
-      {
-        "src": "/gallery/interior-5.jpg",
-        "alt": "Blik op de vloer en inrichting van de zaak"
-      },
-      {
-        "src": "/gallery/mens-haircut-1.jpg",
-        "alt": "Herenknip met nette afwerking bij The Brothers"
-      },
-      {
-        "src": "/gallery/mens-haircut-2.jpg",
-        "alt": "Strak herenkapsel na de behandeling"
-      },
-      {
-        "src": "/gallery/mens-haircut-3.jpg",
-        "alt": "Herenkapsel met aandacht voor contour en lijnen"
-      },
-      {
-        "src": "/gallery/mens-haircut-4.jpg",
-        "alt": "Herenhaar na knippen—detail en strak resultaat"
-      },
-      {
-        "src": "/gallery/mens-haircut-5.jpg",
-        "alt": "Herenkapsel van klassiek tot modern"
-      },
-      {
-        "src": "/gallery/kids-haircut-1.jpg",
-        "alt": "Kinderknip bij Barbershop The Brothers"
-      },
-      {
-        "src": "/gallery/kids-haircut-2.jpg",
-        "alt": "Kapsel voor kinderen—netjes en verzorgd"
-      },
-      {
-        "src": "/gallery/coffee.jpg",
-        "alt": "Koffie voor klanten in de barbershop"
-      },
-      {
-        "src": "/gallery/logo-the-brothers.jpg",
-        "alt": "Logo Barbershop The Brothers"
-      }
-    ]
+    "instagram": "Volg ons op Instagram"
   },
   "booking": {
     "title": "Boeken of direct langskomen",

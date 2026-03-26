@@ -108,65 +108,7 @@
   },
   "gallery": {
     "title": "Efekty naszej pracy",
-    "instagram": "Obserwuj nas na Instagramie",
-    "images": [
-      {
-        "src": "/gallery/interior-1.jpg",
-        "alt": "Wnetrze Barbershop The Brothers w Lelystad: fotele, lustra i stanowiska"
-      },
-      {
-        "src": "/gallery/interior-2.jpg",
-        "alt": "Widok na salon z profesjonalnym wyposazeniem barbershopu"
-      },
-      {
-        "src": "/gallery/interior-3.jpg",
-        "alt": "Klimat wnetrza The Brothers"
-      },
-      {
-        "src": "/gallery/interior-4.jpg",
-        "alt": "Nowoczesna przestrzen barbershopu w schludnym stylu"
-      },
-      {
-        "src": "/gallery/interior-5.jpg",
-        "alt": "Podloga i uklad wnetrza salonu"
-      },
-      {
-        "src": "/gallery/mens-haircut-1.jpg",
-        "alt": "Strzyzenie meskie z dopracowanym wykonczeniem"
-      },
-      {
-        "src": "/gallery/mens-haircut-2.jpg",
-        "alt": "Meskie ciecie po wizycie—ostre linie"
-      },
-      {
-        "src": "/gallery/mens-haircut-3.jpg",
-        "alt": "Fryzura meska z dbaloscia o kontur i detale"
-      },
-      {
-        "src": "/gallery/mens-haircut-4.jpg",
-        "alt": "Wlosy meskie po strzyzeniu—precyzja i efekt"
-      },
-      {
-        "src": "/gallery/mens-haircut-5.jpg",
-        "alt": "Strzyzenie meskie od klasyki po nowoczesny styl"
-      },
-      {
-        "src": "/gallery/kids-haircut-1.jpg",
-        "alt": "Strzyzenie dzieciece w Barbershop The Brothers"
-      },
-      {
-        "src": "/gallery/kids-haircut-2.jpg",
-        "alt": "Fryzura dla dziecka—schludnie i z glowa"
-      },
-      {
-        "src": "/gallery/coffee.jpg",
-        "alt": "Kawa dla klientow w barbershopie"
-      },
-      {
-        "src": "/gallery/logo-the-brothers.jpg",
-        "alt": "Logo Barbershop The Brothers"
-      }
-    ]
+    "instagram": "Obserwuj nas na Instagramie"
   },
   "booking": {
     "title": "Rezerwacja albo wejscie z ulicy",

@@ -1,4 +1,5 @@
 ---
+import { HERO_IMAGE_URL } from "../config/images";
 import { t, type Lang } from "../i18n/utils";
 
 interface Props {
@@ -12,9 +13,8 @@ const { lang } = Astro.props;
   id="home"
   class="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pt-28 md:px-8"
 >
-  <!-- Lokalny plik w /public/gallery — bez zewnętrznego URL (np. Unsplash) -->
   <img
-    src="/gallery/hero-banner.jpg"
+    src={HERO_IMAGE_URL}
     alt=""
     class="absolute inset-0 h-full w-full object-cover object-center"
     width="1920"

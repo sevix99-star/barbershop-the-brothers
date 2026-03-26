@@ -6,6 +6,7 @@ import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/500.css";
 import "@fontsource/dm-sans/600.css";
 import "../styles/global.css";
+import { HERO_IMAGE_URL } from "../config/images";
 import { t, type Lang } from "../i18n/utils";
 
 interface Props {
@@ -79,7 +80,7 @@ const schemaData = {
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
-    <link rel="preload" as="image" href="/gallery/hero-banner.jpg" />
+    <link rel="preload" as="image" href={HERO_IMAGE_URL} />
 
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="nl" href={`${baseUrl}/nl/`} />

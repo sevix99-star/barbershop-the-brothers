@@ -1,32 +1,32 @@
 ---
-import { getTranslations, t, type Lang } from "../i18n/utils";
+import { t, type Lang } from "../i18n/utils";
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
-const images = getTranslations(lang).gallery.images;
+
+/** Empty frame slots (layout only — no placeholder images). */
+const frameCount = 12;
 ---
 
 <section id="gallery" class="px-4 py-24 md:px-8" data-animate>
   <div class="mx-auto max-w-6xl">
     <h2 class="section-title section-title--left">{t(lang, "gallery.title")}</h2>
 
-    <div class="mt-12 grid grid-cols-2 gap-2 md:grid-cols-3">
+    <div
+      class="mt-12 grid grid-cols-2 gap-2 md:grid-cols-3"
+      role="presentation"
+      aria-hidden="true"
+    >
       {
-        images.map((image) => (
-          <div class="group relative aspect-square overflow-hidden rounded-lg">
-            <img
-              src={image.src}
-              alt={image.alt}
-              class="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-              loading="lazy"
-              decoding="async"
-              width="600"
-              height="600"
+        Array.from({ length: frameCount }).map(() => (
+          <div class="group relative aspect-square overflow-hidden rounded-lg border border-dashed border-white/15 bg-white/[0.03] transition duration-300 hover:border-gold/35 hover:bg-white/[0.06]">
+            <div
+              class="pointer-events-none absolute inset-3 rounded-md border border-white/5 opacity-60"
+              aria-hidden="true"
             />
-            <div class="absolute inset-0 bg-gold/10 opacity-0 transition group-hover:opacity-100"></div>
           </div>
         ))
       }
