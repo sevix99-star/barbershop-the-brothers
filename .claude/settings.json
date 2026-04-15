@@ -6,9 +6,55 @@
         "source": "github",
         "repo": "thedotmack/claude-mem"
       }
+    },
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
+    },
+    "repomix": {
+      "source": {
+        "source": "github",
+        "repo": "yamadashy/repomix"
+      }
+    },
+    "awesome-claude-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ComposioHQ/awesome-claude-plugins"
+      }
     }
   },
   "enabledPlugins": {
-    "claude-mem@thedotmack": true
+    "claude-mem@thedotmack": true,
+    "superpowers@superpowers-marketplace": true,
+    "repomix-mcp@repomix": true,
+    "repomix-commands@repomix": true,
+    "repomix-explorer@repomix": true,
+    "connect-apps@awesome-claude-plugins": true,
+    "frontend-design@awesome-claude-plugins": true,
+    "artifacts-builder@awesome-claude-plugins": true,
+    "theme-factory@awesome-claude-plugins": true,
+    "canvas-design@awesome-claude-plugins": true,
+    "senior-frontend@awesome-claude-plugins": true,
+    "frontend-developer@awesome-claude-plugins": true,
+    "commit@awesome-claude-plugins": true,
+    "create-pr@awesome-claude-plugins": true,
+    "pr-review@awesome-claude-plugins": true,
+    "changelog-generator@awesome-claude-plugins": true,
+    "ship@awesome-claude-plugins": true,
+    "code-review@awesome-claude-plugins": true,
+    "test-writer-fixer@awesome-claude-plugins": true,
+    "debugger@awesome-claude-plugins": true,
+    "bug-fix@awesome-claude-plugins": true,
+    "backend-architect@awesome-claude-plugins": true,
+    "mcp-builder@awesome-claude-plugins": true,
+    "agent-sdk-dev@awesome-claude-plugins": true,
+    "perf@awesome-claude-plugins": true,
+    "audit-project@awesome-claude-plugins": true,
+    "documentation-generator@awesome-claude-plugins": true,
+    "security-guidance@awesome-claude-plugins": true,
+    "developer-growth-analysis@awesome-claude-plugins": true
   }
 }
