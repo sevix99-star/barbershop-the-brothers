@@ -1,0 +1,166 @@
+---
+// Live Open/Closed badge — chosen over barber-pole / magnetic-CTA / card-reveals
+// because "Are they open right now?" is the #1 pre-visit question for any local
+// barbershop. It uses real runtime data (Date + hours pulled from the same i18n
+// file the location block reads), works entirely offline, updates every 60s,
+// is locale-aware (NL/EN/PL), and converts directly into bookings rather than
+// being pure ornament. Highest effort/impact ratio of the four candidates.
+import { getTranslations, type Lang } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+  variant?: "hero" | "pill";
+}
+
+const { lang, variant = "hero" } = Astro.props;
+const tx = getTranslations(lang);
+
+const dayKeys: readonly (keyof typeof tx.location.hours)[] = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];
+
+const hoursMap: Record<string, string> = {};
+dayKeys.forEach((k) => {
+  hoursMap[k] = tx.location.hours[k];
+});
+
+const dayShort = tx.openStatus.dayShort;
+
+const i18nPayload = {
+  openNow: tx.openStatus.openNow,
+  closed: tx.openStatus.closed,
+  closesAt: tx.openStatus.closesAt,
+  opensAt: tx.openStatus.opensAt,
+  opensNextDay: tx.openStatus.opensNextDay,
+  closingSoon: tx.openStatus.closingSoon,
+  dayShort,
+  hours: hoursMap,
+  dayKeys,
+};
+---
+
+{variant === "hero" ? (
+  <div
+    class="open-status open-status--hero flex items-center gap-[10px] text-[14px]"
+    data-open-status
+    data-i18n={JSON.stringify(i18nPayload)}
+    role="status"
+    aria-live="polite"
+  >
+    <span class="live-dot" data-dot></span>
+    <span class="font-cond uppercase tracking-[0.2em]" data-label>&nbsp;</span>
+  </div>
+) : (
+  <div
+    class="open-status open-status--pill hidden items-center gap-[8px] border border-line px-[10px] py-[6px] text-[10px] uppercase tracking-[0.2em] text-ink-dim xl:inline-flex"
+    data-open-status
+    data-i18n={JSON.stringify(i18nPayload)}
+    role="status"
+    aria-live="polite"
+  >
+    <span class="live-dot" data-dot style="width:5px;height:5px;box-shadow:0 0 0 3px rgba(201,168,76,0.18)"></span>
+    <span data-label>&nbsp;</span>
+  </div>
+)}
+
+<script>
+  type OpenI18n = {
+    openNow: string;
+    closed: string;
+    closesAt: string;
+    opensAt: string;
+    opensNextDay: string;
+    closingSoon: string;
+    dayShort: Record<string, string>;
+    hours: Record<string, string>;
+    dayKeys: string[];
+  };
+
+  function parseHourRange(raw: string): [number, number] | null {
+    const m = raw.match(/(\d{1,2}):(\d{2})\s*[–\-]\s*(\d{1,2}):(\d{2})/);
+    if (!m) return null;
+    const o = parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
+    const c = parseInt(m[3], 10) * 60 + parseInt(m[4], 10);
+    return [o, c];
+  }
+
+  function fmt(mins: number): string {
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+  }
+
+  function render(root: HTMLElement, data: OpenI18n) {
+    const dot = root.querySelector<HTMLElement>("[data-dot]");
+    const label = root.querySelector<HTMLElement>("[data-label]");
+    if (!dot || !label) return;
+
+    const now = new Date();
+    const todayIdx = now.getDay();
+    const todayKey = data.dayKeys[todayIdx];
+    const mins = now.getHours() * 60 + now.getMinutes();
+
+    const todayRange = parseHourRange(data.hours[todayKey] ?? "");
+    let isOpen = false;
+    let closingSoon = false;
+    let text = "";
+
+    if (todayRange && mins >= todayRange[0] && mins < todayRange[1]) {
+      isOpen = true;
+      closingSoon = todayRange[1] - mins <= 30;
+      text = closingSoon
+        ? `${data.closingSoon} · ${data.closesAt} ${fmt(todayRange[1])}`
+        : `${data.openNow} · ${data.closesAt} ${fmt(todayRange[1])}`;
+    } else {
+      // Closed: find next opening within 7 days
+      for (let i = 0; i < 7; i++) {
+        const nextIdx = (todayIdx + i) % 7;
+        const nextKey = data.dayKeys[nextIdx];
+        const r = parseHourRange(data.hours[nextKey] ?? "");
+        if (!r) continue;
+        if (i === 0 && mins < r[0]) {
+          text = `${data.closed} · ${data.opensAt} ${fmt(r[0])}`;
+          break;
+        }
+        if (i > 0) {
+          const dayLabel = data.dayShort[nextKey] ?? "";
+          text = `${data.closed} · ${data.opensNextDay} ${dayLabel} ${fmt(r[0])}`;
+          break;
+        }
+      }
+      if (!text) text = data.closed;
+    }
+
+    label.textContent = text;
+    dot.classList.toggle("live-dot--muted", !isOpen);
+    root.dataset.state = isOpen ? (closingSoon ? "closing-soon" : "open") : "closed";
+  }
+
+  function init() {
+    const nodes = document.querySelectorAll<HTMLElement>("[data-open-status]");
+    nodes.forEach((el) => {
+      const raw = el.getAttribute("data-i18n");
+      if (!raw) return;
+      let data: OpenI18n;
+      try {
+        data = JSON.parse(raw) as OpenI18n;
+      } catch {
+        return;
+      }
+      render(el, data);
+      setInterval(() => render(el, data), 60_000);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+</script>
