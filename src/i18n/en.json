@@ -6,140 +6,230 @@
   "nav": {
     "home": "Home",
     "services": "Services",
-    "prices": "Prices",
+    "prices": "Pricing",
     "gallery": "Gallery",
     "bookNow": "Book Now",
-    "appointment": "Appointment"
+    "appointment": "Book now",
+    "location": "Location"
   },
   "hero": {
-    "headline": "Your go-to barbershop in Lelystad",
-    "subline": "PRECISION, STYLE, CRAFT",
-    "ctaPrimary": "Book your appointment",
+    "corner": {
+      "est": "Est. Lelystad",
+      "no": "No. 01"
+    },
+    "eyebrow": "Precision · Style · Craft",
+    "headline": {
+      "part1": "Your local",
+      "accent1": "barbershop",
+      "part2": "in",
+      "accent2": "Lelystad."
+    },
+    "ctaPrimary": "Book an appointment",
     "ctaSecondary": "See pricing",
-    "badge": "5.0 rating from 109 Google reviews",
-    "address": "De Promesse 113, 8232 VZ Lelystad"
+    "ratingLabel": "Google Rating",
+    "ratingValue": "5.0 / 109",
+    "addressLabel": "Address",
+    "openLabel": "Open now",
+    "stripe": [
+      "Men's haircut",
+      "Beard shaping",
+      "Fade & Skin Fade",
+      "Combi look",
+      "Kids' haircut",
+      "Walk-ins welcome"
+    ]
+  },
+  "openStatus": {
+    "openNow": "Open now",
+    "closed": "Closed",
+    "closesAt": "Closes at",
+    "opensAt": "Opens",
+    "opensNextDay": "Opens",
+    "closingSoon": "Closing soon",
+    "dayShort": {
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday": "Sat",
+      "sunday": "Sun"
+    }
   },
   "about": {
-    "title": "Who we are",
-    "description": "At The Brothers, we focus on clean results and a relaxed experience. Good service, no rush.",
+    "eyebrow": "About us",
+    "number": "01",
+    "headline": {
+      "part1": "No rush.",
+      "accent": "Full attention."
+    },
+    "lede": "At The Brothers we take the time to do it right. Every chair is a workshop — sharp fades, crisp contours, a well-groomed beard and coffee on the side.",
     "value1": {
-      "title": "Detail-driven cuts",
-      "desc": "From hairline to fade blend, every finish is done with care."
+      "title": "Sharp details",
+      "desc": "From contour to fade: every line must be right. We measure, check and tidy until it sits."
     },
     "value2": {
-      "title": "Easy atmosphere",
-      "desc": "Grab a coffee, settle in, and leave looking fresh."
+      "title": "Relaxed room",
+      "desc": "Coffee, good conversation and a chair you'll want to come back to. Nederlands, English, Polski — all welcome."
     },
     "value3": {
-      "title": "Clear pricing",
-      "desc": "Straightforward prices so you always know what to expect."
+      "title": "Honest pricing",
+      "desc": "Clear rates, no surprises. What's on the list is what you pay at the chair."
     }
   },
   "services": {
-    "title": "Our services",
+    "eyebrow": "Our services",
+    "number": "02",
+    "headline": {
+      "part1": "Six services,",
+      "accent": "one standard."
+    },
+    "lede": "From a classic cut to a full Combi — every appointment gets the same care, time and finish. We use Wahl & Andis, sharp blades and products that don't dry out your hair or skin.",
+    "from": "from",
+    "mostBooked": "Most booked",
+    "serviceNo": "Service No.",
     "items": [
       {
         "id": "haircut",
-        "name": "Men's Haircut",
-        "desc": "Classic or modern style, matched to your hair and routine.",
-        "price": "€25"
+        "name": "Men's haircut",
+        "desc": "Classic or modern, tailored to your style and hair type.",
+        "price": "€25",
+        "duration": "15 min"
       },
       {
         "id": "beard",
-        "name": "Beard Trim & Shape",
-        "desc": "Clean shape-up with balanced lines and neat contours.",
-        "price": "€15"
+        "name": "Beard trim & shape",
+        "desc": "Sharp lines and a groomed beard shape with a hot-towel finish.",
+        "price": "€15",
+        "duration": "15 min"
       },
       {
         "id": "fade",
         "name": "Fade & Skin Fade",
-        "desc": "Smooth blends and a crisp, polished finish.",
-        "price": "€30"
+        "desc": "Seamless transitions with clipper and razor, precisely finished.",
+        "price": "€30",
+        "duration": "30 min"
       },
       {
         "id": "kids",
-        "name": "Kids Haircut",
-        "desc": "Comfortable and clean cuts for younger customers.",
-        "price": "€18"
+        "name": "Kids' haircut",
+        "desc": "Calm and tidy cuts for young clients aged 12 and under.",
+        "price": "€18",
+        "duration": "15 min"
       },
       {
         "id": "wash",
-        "name": "Hair Wash & Style",
-        "desc": "Fresh wash and practical styling before you head out.",
-        "price": "€10"
+        "name": "Wash & style",
+        "desc": "Freshly washed with salon-quality shampoo and styled in place.",
+        "price": "€10",
+        "duration": "10 min"
       },
       {
         "id": "combo",
-        "name": "Combo: Hair + Beard",
-        "desc": "A full grooming session in one appointment.",
-        "price": "€35"
+        "name": "Combi: hair + beard",
+        "desc": "The complete look in one session — hair, beard, finish, coffee.",
+        "price": "€35",
+        "duration": "45 min"
       }
     ]
   },
   "pricing": {
-    "title": "Price list",
-    "note": "Prices may vary slightly for extra styling or specific requests.",
-    "items": [
-      {
-        "service": "Men's Haircut",
-        "price": "€25"
-      },
-      {
-        "service": "Beard Trim & Shape",
-        "price": "€15"
-      },
-      {
-        "service": "Fade & Skin Fade",
-        "price": "€30"
-      },
-      {
-        "service": "Kids Haircut",
-        "price": "€18"
-      },
-      {
-        "service": "Hair Wash & Style",
-        "price": "€10"
-      },
-      {
-        "service": "Combo: Hair + Beard",
-        "price": "€35"
-      }
-    ]
+    "eyebrow": "Pricing",
+    "number": "03",
+    "headline": {
+      "part1": "What it costs.",
+      "accent": "Plain and clear."
+    },
+    "lede": "Simple and honest. No hidden fees, no weekend surcharges. The Combi is by far the most-booked — and rightly so.",
+    "mostBookedLabel": "Most booked",
+    "popularPill": "Most Popular",
+    "quote": "Twenty extra minutes and you walk out a different person. That's the Combi — hair and beard in one sitting.",
+    "note": "Prices may vary slightly with extra styling or special requests. Children up to 12 years fall under the Kids' haircut rate."
   },
   "gallery": {
-    "title": "Cuts from our chair",
-    "instagram": "Follow us on Instagram"
+    "eyebrow": "From the chair",
+    "number": "04",
+    "headline": {
+      "part1": "Results,",
+      "accent": "no filters."
+    },
+    "lede": "A quick look at the last few weeks. More work — and the atmosphere — lives on Instagram. Tag us when you come in.",
+    "labels": [
+      "Atelier · Lelystad",
+      "Classic Cut",
+      "Skin Fade",
+      "Beard Shape",
+      "The chair",
+      "Combi",
+      "Shop"
+    ],
+    "instagramHandle": "@barbershopthebrothers",
+    "followOn": "Follow along at",
+    "openInstagram": "Open Instagram"
   },
   "booking": {
-    "title": "Book ahead or walk in",
-    "fallback": "Book your appointment online via Fresha",
-    "whatsapp": "Message us on WhatsApp",
-    "walkIn": "No appointment? Feel free to walk in!"
+    "eyebrow": "Book an appointment",
+    "number": "05",
+    "headline": {
+      "part1": "Book online.",
+      "accent": "Or walk in."
+    },
+    "lede": "Fresha shows live availability and the next open slot. Prefer to message us first or double-check? WhatsApp is quicker than calling.",
+    "live": "Live availability",
+    "freshaHeading": {
+      "part1": "Book via",
+      "accent": "Fresha"
+    },
+    "freshaDesc": "Pick your barber, your service and your time in under a minute. Confirmation straight to your inbox and a reminder the day before.",
+    "openFresha": "Open Fresha",
+    "todaySlots": "Available today",
+    "whatsappHeading": {
+      "part1": "Quick",
+      "accent": "chat?"
+    },
+    "whatsappDesc": "Not sure which service fits, or want to ask about something out of the ordinary? Drop us a message.",
+    "startChat": "Start chat",
+    "walkIn": "Walk-in",
+    "walkInText": "No appointment? Walk right in — we nearly always make room."
   },
   "reviews": {
-    "title": "What clients say",
-    "viewAll": "View all 109 reviews on Google ->",
+    "eyebrow": "What clients say",
+    "number": "06",
+    "headline": {
+      "part1": "Five stars,",
+      "accent": "one-o-nine times."
+    },
+    "lede": "A small slice of the Google reviews — in Dutch, English and Polish, just like our clients.",
+    "viewAll": "See all 109 reviews on Google →",
     "items": [
       {
-        "text": "Best haircut I've had since I've moved to the Netherlands. Great place, will definitely come back!",
+        "text": "Best haircut I've had since I moved to the Netherlands. Great place — I'll definitely be back.",
         "name": "M. Johnson",
-        "date": "2024"
+        "date": "2024 · EN"
       },
       {
-        "text": "Great service! I was welcomed, offered water and coffee before my cut. Very professional team.",
+        "text": "Welcomed with coffee, clear explanation, sharp cut. Real craftsmanship and a great atmosphere.",
         "name": "A. de Vries",
-        "date": "2024"
+        "date": "2024 · NL"
       },
       {
-        "text": "Amazing place... super efficient and professional. Atmosphere is amazing. Highly recommend!",
+        "text": "Amazing place — super efficient and professional. The atmosphere is exceptional. Highly recommend.",
         "name": "K. Nowak",
-        "date": "2024"
+        "date": "2024 · PL"
       }
     ]
   },
   "location": {
-    "title": "Location & opening hours",
+    "eyebrow": "Location & hours",
+    "number": "07",
+    "headline": {
+      "part1": "De Promesse 113.",
+      "accent": "Two minutes from the station."
+    },
+    "lede": "Lelystad Centrum — a short walk from Lelystad Centrum station, with parking round the corner.",
     "openingHours": "Opening hours",
+    "contact": "Contact",
+    "today": "Today",
     "days": {
       "monday": "Monday",
       "tuesday": "Tuesday",
@@ -150,25 +240,31 @@
       "sunday": "Sunday"
     },
     "hours": {
-      "monday": "12:00 - 18:00",
-      "tuesday": "09:00 - 18:00",
-      "wednesday": "09:00 - 18:00",
-      "thursday": "09:00 - 18:00",
-      "friday": "09:00 - 18:00",
-      "saturday": "09:00 - 17:00",
+      "monday": "12:00 – 18:00",
+      "tuesday": "09:00 – 18:00",
+      "wednesday": "09:00 – 18:00",
+      "thursday": "09:00 – 18:00",
+      "friday": "09:00 – 18:00",
+      "saturday": "09:00 – 17:00",
       "sunday": "Closed"
     },
-    "nearStation": "2 minutes on foot from Lelystad Centrum Station",
-    "email": "info@barbershopthebrothers.nl",
-    "whatsapp": "+31 6 1234 5678",
-    "address": "De Promesse 113, 8232 VZ Lelystad"
+    "labels": {
+      "address": "Address",
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "phone": "Phone",
+      "station": "Station"
+    },
+    "nearStation": "2 min walk — Lelystad Centrum",
+    "address": "De Promesse 113, 8232 VZ Lelystad",
+    "directions": "Directions →"
   },
   "footer": {
-    "tagline": "Sharp cuts, relaxed vibe, always welcome.",
-    "kvk": "KVK: 12345678",
-    "copyright": "© 2026 Barbershop The Brothers - Lelystad",
-    "madeWith": "Made with craftsmanship in Lelystad",
+    "brandTag": "Sharp cuts, good vibes, always welcome. A regular's barbershop in Lelystad — for Dutch, English and Polish clients.",
     "quickLinks": "Quick links",
-    "socials": "Social"
+    "company": "Company",
+    "social": "Social",
+    "copyright": "© 2026 Barbershop The Brothers — Lelystad",
+    "madeWith": "Made with craftsmanship in Lelystad"
   }
 }

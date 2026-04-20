@@ -9,137 +9,227 @@
     "prices": "Prijzen",
     "gallery": "Galerij",
     "bookNow": "Boek Nu",
-    "appointment": "Afspraak"
+    "appointment": "Afspraak",
+    "location": "Locatie"
   },
   "hero": {
-    "headline": "Jouw vaste barbershop in Lelystad",
-    "subline": "PRECISIE, STIJL, VAKMANSCHAP",
+    "corner": {
+      "est": "Est. Lelystad",
+      "no": "No. 01"
+    },
+    "eyebrow": "Precisie · Stijl · Vakmanschap",
+    "headline": {
+      "part1": "Jouw vaste",
+      "accent1": "barbershop",
+      "part2": "in",
+      "accent2": "Lelystad."
+    },
     "ctaPrimary": "Plan je afspraak",
     "ctaSecondary": "Bekijk prijzen",
-    "badge": "5.0 beoordeling uit 109 Google reviews",
-    "address": "De Promesse 113, 8232 VZ Lelystad"
+    "ratingLabel": "Google Rating",
+    "ratingValue": "5.0 / 109",
+    "addressLabel": "Adres",
+    "openLabel": "Nu open",
+    "stripe": [
+      "Heren knippen",
+      "Baard shaping",
+      "Fade & Skin Fade",
+      "Combi look",
+      "Kinderknippen",
+      "Walk-in welkom"
+    ]
+  },
+  "openStatus": {
+    "openNow": "Nu open",
+    "closed": "Gesloten",
+    "closesAt": "Sluit om",
+    "opensAt": "Opent",
+    "opensNextDay": "Opent",
+    "closingSoon": "Sluit bijna",
+    "dayShort": {
+      "monday": "Ma",
+      "tuesday": "Di",
+      "wednesday": "Wo",
+      "thursday": "Do",
+      "friday": "Vr",
+      "saturday": "Za",
+      "sunday": "Zo"
+    }
   },
   "about": {
-    "title": "Wie wij zijn",
-    "description": "Bij The Brothers nemen we tijd voor goed werk. Geen haast, wel aandacht voor jouw look.",
+    "eyebrow": "Over ons",
+    "number": "01",
+    "headline": {
+      "part1": "Geen haast.",
+      "accent": "Wel aandacht."
+    },
+    "lede": "Bij The Brothers nemen we de tijd voor goed werk. Elke stoel is een atelier — strakke fades, scherpe contouren, een verzorgde baard en een koffie erbij. Dat is de afspraak.",
     "value1": {
       "title": "Strakke details",
-      "desc": "Van contour tot fade: elke lijn moet kloppen."
+      "desc": "Van contour tot fade: elke lijn moet kloppen. We meten, controleren en werken na tot het klopt."
     },
     "value2": {
       "title": "Relaxte sfeer",
-      "desc": "Koffie, goed gesprek en een stoel waar je graag terugkomt."
+      "desc": "Koffie, goed gesprek en een stoel waar je graag terugkomt. Nederlands, English, Polski — allemaal welkom."
     },
     "value3": {
       "title": "Eerlijke prijzen",
-      "desc": "Duidelijke tarieven zonder verrassingen achteraf."
+      "desc": "Duidelijke tarieven zonder verrassingen. Wat je op de prijslijst ziet, reken je ook aan de stoel af."
     }
   },
   "services": {
-    "title": "Onze services",
+    "eyebrow": "Onze services",
+    "number": "02",
+    "headline": {
+      "part1": "Zes diensten,",
+      "accent": "één standaard."
+    },
+    "lede": "Van een klassieke knipbeurt tot een complete Combi — elke afspraak krijgt dezelfde aandacht, tijd en afwerking. Wij werken met Wahl & Andis, scherpe messen en producten die je haar en huid niet droogtrekken.",
+    "from": "vanaf",
+    "mostBooked": "Meest geboekt",
+    "serviceNo": "Service No.",
     "items": [
       {
         "id": "haircut",
         "name": "Heren knippen",
-        "desc": "Klassiek of modern, afgestemd op jouw stijl.",
-        "price": "€25"
+        "desc": "Klassiek of modern, afgestemd op jouw stijl en haarstructuur.",
+        "price": "€25",
+        "duration": "15 min"
       },
       {
         "id": "beard",
         "name": "Baard trimmen & shapen",
-        "desc": "Scherpe lijnen en een verzorgde baardvorm.",
-        "price": "€15"
+        "desc": "Scherpe lijnen en een verzorgde baardvorm met heet doek finish.",
+        "price": "€15",
+        "duration": "15 min"
       },
       {
         "id": "fade",
         "name": "Fade & Skin Fade",
-        "desc": "Naadloze overgangen met precieze afwerking.",
-        "price": "€30"
+        "desc": "Naadloze overgangen met tondeuse en scheermes, precies afgewerkt.",
+        "price": "€30",
+        "duration": "30 min"
       },
       {
         "id": "kids",
         "name": "Kinderknippen",
-        "desc": "Rustig en netjes geknipt voor jonge klanten.",
-        "price": "€18"
+        "desc": "Rustig en netjes geknipt voor jonge klanten tot en met 12 jaar.",
+        "price": "€18",
+        "duration": "15 min"
       },
       {
         "id": "wash",
         "name": "Haar wassen & stylen",
-        "desc": "Fris gewassen en direct in model gebracht.",
-        "price": "€10"
+        "desc": "Fris gewassen met salon-kwaliteit shampoo en direct in model.",
+        "price": "€10",
+        "duration": "10 min"
       },
       {
         "id": "combo",
         "name": "Combi: haar + baard",
-        "desc": "Complete look in een enkele afspraak.",
-        "price": "€35"
+        "desc": "Complete look in één afspraak — haar, baard, afwerking, koffie.",
+        "price": "€35",
+        "duration": "45 min"
       }
     ]
   },
   "pricing": {
-    "title": "Prijslijst",
-    "note": "Prijzen kunnen licht verschillen bij extra styling of speciale verzoeken.",
-    "items": [
-      {
-        "service": "Heren knippen",
-        "price": "€25"
-      },
-      {
-        "service": "Baard trimmen & shapen",
-        "price": "€15"
-      },
-      {
-        "service": "Fade & Skin Fade",
-        "price": "€30"
-      },
-      {
-        "service": "Kinderknippen",
-        "price": "€18"
-      },
-      {
-        "service": "Haar wassen & stylen",
-        "price": "€10"
-      },
-      {
-        "service": "Combi: haar + baard",
-        "price": "€35"
-      }
-    ]
+    "eyebrow": "Prijslijst",
+    "number": "03",
+    "headline": {
+      "part1": "Wat het kost.",
+      "accent": "Zwart op goud."
+    },
+    "lede": "Simpel en eerlijk. Geen verborgen kosten, geen toeslagen — ook niet in het weekend. De Combi is veruit het meest geboekt, en terecht.",
+    "mostBookedLabel": "Meest geboekt",
+    "popularPill": "Most Popular",
+    "quote": "Twintig minuten extra en je loopt buiten als een ander mens. Dat is de Combi — haar én baard, één zitting.",
+    "note": "Prijzen kunnen licht verschillen bij extra styling of speciale verzoeken. Kinderen tot en met 12 jaar vallen onder het Kinderknippen tarief."
   },
   "gallery": {
-    "title": "Resultaten uit de stoel",
-    "instagram": "Volg ons op Instagram"
+    "eyebrow": "Uit de stoel",
+    "number": "04",
+    "headline": {
+      "part1": "Resultaten,",
+      "accent": "geen filters."
+    },
+    "lede": "Een greep uit de laatste weken. Meer werk — en de goede sfeer — zie je op Instagram. Tag ons als je binnenkomt.",
+    "labels": [
+      "Atelier · Lelystad",
+      "Classic Cut",
+      "Skin Fade",
+      "Baard shape",
+      "De stoel",
+      "Combi",
+      "Shop"
+    ],
+    "instagramHandle": "@barbershopthebrothers",
+    "followOn": "Volg mee op",
+    "openInstagram": "Open Instagram"
   },
   "booking": {
-    "title": "Boeken of direct langskomen",
-    "fallback": "Boek je afspraak online via Fresha",
-    "whatsapp": "Stuur ons op WhatsApp",
-    "walkIn": "Geen afspraak? Loop gerust binnen!"
+    "eyebrow": "Afspraak maken",
+    "number": "05",
+    "headline": {
+      "part1": "Plan online.",
+      "accent": "Of loop binnen."
+    },
+    "lede": "Via Fresha zie je direct de eerstvolgende plek. Liever even appen of checken of er ruimte is? WhatsApp is sneller dan bellen.",
+    "live": "Live beschikbaarheid",
+    "freshaHeading": {
+      "part1": "Boek via",
+      "accent": "Fresha"
+    },
+    "freshaDesc": "Kies je barber, je dienst en je tijd in onder een minuut. Bevestiging direct in je mailbox en een herinnering een dag van tevoren.",
+    "openFresha": "Open Fresha",
+    "todaySlots": "Vandaag beschikbaar",
+    "whatsappHeading": {
+      "part1": "Even",
+      "accent": "appen?"
+    },
+    "whatsappDesc": "Twijfel je over welke dienst bij je past, of wil je een uitzondering bespreken? Stuur ons gerust een bericht.",
+    "startChat": "Start chat",
+    "walkIn": "Walk-in",
+    "walkInText": "Geen afspraak? Loop gerust binnen — we maken vrijwel altijd plek."
   },
   "reviews": {
-    "title": "Wat klanten zeggen",
-    "viewAll": "Bekijk alle 109 reviews op Google ->",
+    "eyebrow": "Wat klanten zeggen",
+    "number": "06",
+    "headline": {
+      "part1": "Vijf sterren,",
+      "accent": "109 keer."
+    },
+    "lede": "Een kleine greep uit de Google reviews — in het Nederlands, Engels en Pools, net zoals onze klanten.",
+    "viewAll": "Bekijk alle 109 reviews op Google →",
     "items": [
       {
-        "text": "Best haircut I've had since I've moved to the Netherlands. Great place, will definitely come back!",
+        "text": "Best haircut I've had since I moved to the Netherlands. Great place — I'll definitely be back.",
         "name": "M. Johnson",
-        "date": "2024"
+        "date": "2024 · EN"
       },
       {
-        "text": "Great service! I was welcomed, offered water and coffee before my cut. Very professional team.",
+        "text": "Vriendelijk ontvangen met koffie, heldere uitleg, strakke knipbeurt. Een echt ambacht en een fijne sfeer.",
         "name": "A. de Vries",
-        "date": "2024"
+        "date": "2024 · NL"
       },
       {
-        "text": "Amazing place... super efficient and professional. Atmosphere is amazing. Highly recommend!",
+        "text": "Niesamowite miejsce — bardzo profesjonalne i efektywne. Atmosfera wyjątkowa. Szczerze polecam.",
         "name": "K. Nowak",
-        "date": "2024"
+        "date": "2024 · PL"
       }
     ]
   },
   "location": {
-    "title": "Locatie & openingstijden",
+    "eyebrow": "Locatie & uren",
+    "number": "07",
+    "headline": {
+      "part1": "De Promesse 113.",
+      "accent": "Twee minuten van het station."
+    },
+    "lede": "Lelystad Centrum — op loopafstand van station Lelystad Centrum, met parkeergelegenheid om de hoek.",
     "openingHours": "Openingstijden",
+    "contact": "Contact",
+    "today": "Vandaag",
     "days": {
       "monday": "Maandag",
       "tuesday": "Dinsdag",
@@ -150,25 +240,31 @@
       "sunday": "Zondag"
     },
     "hours": {
-      "monday": "12:00 - 18:00",
-      "tuesday": "09:00 - 18:00",
-      "wednesday": "09:00 - 18:00",
-      "thursday": "09:00 - 18:00",
-      "friday": "09:00 - 18:00",
-      "saturday": "09:00 - 17:00",
+      "monday": "12:00 – 18:00",
+      "tuesday": "09:00 – 18:00",
+      "wednesday": "09:00 – 18:00",
+      "thursday": "09:00 – 18:00",
+      "friday": "09:00 – 18:00",
+      "saturday": "09:00 – 17:00",
       "sunday": "Gesloten"
     },
-    "nearStation": "2 minuten lopen van Station Lelystad Centrum",
-    "email": "info@barbershopthebrothers.nl",
-    "whatsapp": "+31 6 1234 5678",
-    "address": "De Promesse 113, 8232 VZ Lelystad"
+    "labels": {
+      "address": "Adres",
+      "email": "E-mail",
+      "whatsapp": "WhatsApp",
+      "phone": "Telefoon",
+      "station": "Station"
+    },
+    "nearStation": "2 min lopen — Lelystad Centrum",
+    "address": "De Promesse 113, 8232 VZ Lelystad",
+    "directions": "Route →"
   },
   "footer": {
-    "tagline": "Strakke cuts, goede sfeer, altijd welkom.",
-    "kvk": "KVK: 12345678",
-    "copyright": "© 2026 Barbershop The Brothers - Lelystad",
-    "madeWith": "Gemaakt met vakmanschap in Lelystad",
+    "brandTag": "Strakke cuts, goede sfeer, altijd welkom. Een vaste barbershop in Lelystad — voor Nederlandse, Engelse en Poolse klanten.",
     "quickLinks": "Snelle links",
-    "socials": "Social"
+    "company": "Bedrijf",
+    "social": "Social",
+    "copyright": "© 2026 Barbershop The Brothers — Lelystad",
+    "madeWith": "Gemaakt met vakmanschap in Lelystad"
   }
 }

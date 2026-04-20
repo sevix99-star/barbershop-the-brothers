@@ -1,174 +1,270 @@
 {
   "meta": {
     "title": "Barbershop The Brothers | Barber w Lelystad",
-    "description": "Porzadne ciecie, czyste fade'y i ogarnieta broda w Lelystad. Zarezerwuj termin albo wpadaj z marszu."
+    "description": "Porządne cięcia, czyste fade'y i zadbane brody w Lelystad. Zarezerwuj termin albo wpadaj z marszu."
   },
   "nav": {
     "home": "Start",
-    "services": "Uslugi",
+    "services": "Usługi",
     "prices": "Cennik",
     "gallery": "Galeria",
     "bookNow": "Rezerwuj",
-    "appointment": "Wizyta"
+    "appointment": "Rezerwuj",
+    "location": "Lokalizacja"
   },
   "hero": {
-    "headline": "Twoj sprawdzony barbershop w Lelystad",
-    "subline": "PRECYZJA, STYL, RZEMIOSLO",
-    "ctaPrimary": "Umow termin",
-    "ctaSecondary": "Sprawdz cennik",
-    "badge": "Ocena 5.0 na podstawie 109 opinii Google",
-    "address": "De Promesse 113, 8232 VZ Lelystad"
+    "corner": {
+      "est": "Est. Lelystad",
+      "no": "No. 01"
+    },
+    "eyebrow": "Precyzja · Styl · Rzemiosło",
+    "headline": {
+      "part1": "Twój stały",
+      "accent1": "barbershop",
+      "part2": "w",
+      "accent2": "Lelystad."
+    },
+    "ctaPrimary": "Zarezerwuj wizytę",
+    "ctaSecondary": "Zobacz cennik",
+    "ratingLabel": "Ocena Google",
+    "ratingValue": "5.0 / 109",
+    "addressLabel": "Adres",
+    "openLabel": "Teraz otwarte",
+    "stripe": [
+      "Strzyżenie męskie",
+      "Broda",
+      "Fade & Skin Fade",
+      "Combi look",
+      "Strzyżenie dzieci",
+      "Bez rezerwacji"
+    ]
+  },
+  "openStatus": {
+    "openNow": "Otwarte",
+    "closed": "Zamknięte",
+    "closesAt": "Zamyka o",
+    "opensAt": "Otwiera",
+    "opensNextDay": "Otwiera",
+    "closingSoon": "Wkrótce zamykamy",
+    "dayShort": {
+      "monday": "Pn",
+      "tuesday": "Wt",
+      "wednesday": "Śr",
+      "thursday": "Cz",
+      "friday": "Pt",
+      "saturday": "So",
+      "sunday": "Nd"
+    }
   },
   "about": {
-    "title": "Kim jestesmy",
-    "description": "W The Brothers stawiamy na porzadne strzyzenie i luzna atmosfere. Bez napinki, za to z efektem.",
+    "eyebrow": "O nas",
+    "number": "01",
+    "headline": {
+      "part1": "Bez pośpiechu.",
+      "accent": "Z pełną uwagą."
+    },
+    "lede": "W The Brothers poświęcamy czas, by zrobić to dobrze. Każdy fotel to warsztat — precyzyjne fade, ostre kontury, wyprofilowana broda i kawa do tego.",
     "value1": {
-      "title": "Dopiete detale",
-      "desc": "Kontur, przejscie, linia brody - wszystko ma sie zgadzac."
+      "title": "Precyzja w detalach",
+      "desc": "Od konturu po fade: każda linia ma się zgadzać. Mierzymy, sprawdzamy i dopracowujemy."
     },
     "value2": {
-      "title": "Przyjemny klimat",
-      "desc": "Kawa, rozmowa i fotel, do ktorego chce sie wracac."
+      "title": "Swobodna atmosfera",
+      "desc": "Kawa, dobra rozmowa i fotel, do którego chce się wracać. Nederlands, English, Polski — wszyscy mile widziani."
     },
     "value3": {
-      "title": "Jasne ceny",
-      "desc": "Konkretny cennik bez niespodzianek przy kasie."
+      "title": "Uczciwe ceny",
+      "desc": "Jasne stawki, bez niespodzianek. Co na cenniku, to płacisz przy fotelu."
     }
   },
   "services": {
-    "title": "Nasze uslugi",
+    "eyebrow": "Nasze usługi",
+    "number": "02",
+    "headline": {
+      "part1": "Sześć usług,",
+      "accent": "jeden standard."
+    },
+    "lede": "Od klasycznego strzyżenia po pełny Combi — każda wizyta dostaje tę samą uwagę, czas i wykończenie. Pracujemy na Wahl & Andis, ostrych ostrzach i produktach, które nie wysuszają skóry i włosów.",
+    "from": "od",
+    "mostBooked": "Najczęściej rezerwowane",
+    "serviceNo": "Usługa nr",
     "items": [
       {
         "id": "haircut",
-        "name": "Strzyzenie meskie",
-        "desc": "Klasycznie albo nowoczesnie - pod Ciebie i Twoj styl.",
-        "price": "€25"
+        "name": "Strzyżenie męskie",
+        "desc": "Klasyka lub nowoczesność, dopasowana do twojego stylu.",
+        "price": "€25",
+        "duration": "15 min"
       },
       {
         "id": "beard",
-        "name": "Trymowanie brody",
-        "desc": "Czysty ksztalt i rowne linie dla schludnego efektu.",
-        "price": "€15"
+        "name": "Broda — trymowanie i stylizacja",
+        "desc": "Ostre linie i wyprofilowana broda z gorącym ręcznikiem.",
+        "price": "€15",
+        "duration": "15 min"
       },
       {
         "id": "fade",
         "name": "Fade & Skin Fade",
-        "desc": "Plynne przejscia i ostre wykonczenie.",
-        "price": "€30"
+        "desc": "Bezszwowe przejścia maszynką i brzytwą, precyzyjne wykończenie.",
+        "price": "€30",
+        "duration": "30 min"
       },
       {
         "id": "kids",
-        "name": "Strzyzenie dzieciece",
-        "desc": "Spokojnie, sprawnie i z dobrym podejsciem do mlodych.",
-        "price": "€18"
+        "name": "Strzyżenie dzieci",
+        "desc": "Spokojne i staranne strzyżenie dla dzieci do 12 roku życia.",
+        "price": "€18",
+        "duration": "15 min"
       },
       {
         "id": "wash",
         "name": "Mycie i stylizacja",
-        "desc": "Szybkie odswiezenie i ukladanie przed wyjsciem.",
-        "price": "€10"
+        "desc": "Świeżo umyte profesjonalnym szamponem i ułożone.",
+        "price": "€10",
+        "duration": "10 min"
       },
       {
         "id": "combo",
-        "name": "Combo: strzyzenie + broda",
-        "desc": "Pelny zestaw w jednej wizycie.",
-        "price": "€35"
+        "name": "Combi: włosy + broda",
+        "desc": "Kompletny look w jednej wizycie — włosy, broda, kawa.",
+        "price": "€35",
+        "duration": "45 min"
       }
     ]
   },
   "pricing": {
-    "title": "Cennik",
-    "note": "Cena moze sie lekko roznic przy dodatkowej stylizacji lub nietypowej prosbie.",
-    "items": [
-      {
-        "service": "Strzyzenie meskie",
-        "price": "€25"
-      },
-      {
-        "service": "Trymowanie brody",
-        "price": "€15"
-      },
-      {
-        "service": "Fade & Skin Fade",
-        "price": "€30"
-      },
-      {
-        "service": "Strzyzenie dzieciece",
-        "price": "€18"
-      },
-      {
-        "service": "Mycie i stylizacja",
-        "price": "€10"
-      },
-      {
-        "service": "Combo: strzyzenie + broda",
-        "price": "€35"
-      }
-    ]
+    "eyebrow": "Cennik",
+    "number": "03",
+    "headline": {
+      "part1": "Ile to kosztuje.",
+      "accent": "Czarno na złotym."
+    },
+    "lede": "Prosto i uczciwie. Bez ukrytych opłat, bez dopłat weekendowych. Combi jest zdecydowanie najczęściej rezerwowane — słusznie.",
+    "mostBookedLabel": "Najczęściej rezerwowane",
+    "popularPill": "Most Popular",
+    "quote": "Dodatkowe dwadzieścia minut i wychodzisz jak nowy człowiek. To jest Combi — włosy i broda w jednym.",
+    "note": "Ceny mogą się nieznacznie różnić przy dodatkowej stylizacji lub specjalnych życzeniach. Dzieci do 12 lat — taryfa strzyżenia dziecięcego."
   },
   "gallery": {
-    "title": "Efekty naszej pracy",
-    "instagram": "Obserwuj nas na Instagramie"
+    "eyebrow": "Z fotela",
+    "number": "04",
+    "headline": {
+      "part1": "Efekty,",
+      "accent": "bez filtrów."
+    },
+    "lede": "Garść prac z ostatnich tygodni. Więcej — i atmosferę — znajdziesz na Instagramie. Oznacz nas, kiedy wpadniesz.",
+    "labels": [
+      "Atelier · Lelystad",
+      "Classic Cut",
+      "Skin Fade",
+      "Kształt brody",
+      "Fotel",
+      "Combi",
+      "Sklep"
+    ],
+    "instagramHandle": "@barbershopthebrothers",
+    "followOn": "Obserwuj",
+    "openInstagram": "Otwórz Instagram"
   },
   "booking": {
-    "title": "Rezerwacja albo wejscie z ulicy",
-    "fallback": "Zarezerwuj wizyte online przez Fresha",
-    "whatsapp": "Napisz do nas na WhatsApp",
-    "walkIn": "Nie masz terminu? Wpadaj smialo!"
+    "eyebrow": "Rezerwacja",
+    "number": "05",
+    "headline": {
+      "part1": "Rezerwuj online.",
+      "accent": "Albo wpadnij."
+    },
+    "lede": "Fresha pokazuje aktualne wolne terminy. Wolisz napisać lub dopytać? WhatsApp jest szybszy niż telefon.",
+    "live": "Dostępność na żywo",
+    "freshaHeading": {
+      "part1": "Rezerwuj przez",
+      "accent": "Fresha"
+    },
+    "freshaDesc": "Wybierz barbera, usługę i godzinę w niecałą minutę. Potwierdzenie na maila i przypomnienie dzień wcześniej.",
+    "openFresha": "Otwórz Fresha",
+    "todaySlots": "Dostępne dziś",
+    "whatsappHeading": {
+      "part1": "Napisać",
+      "accent": "wiadomość?"
+    },
+    "whatsappDesc": "Nie wiesz, która usługa pasuje, albo masz specjalną prośbę? Napisz do nas śmiało.",
+    "startChat": "Napisz",
+    "walkIn": "Bez rezerwacji",
+    "walkInText": "Bez umawiania? Wpadnij — prawie zawsze znajdziemy miejsce."
   },
   "reviews": {
-    "title": "Co mowia klienci",
-    "viewAll": "Zobacz wszystkie 109 opinii w Google ->",
+    "eyebrow": "Co mówią klienci",
+    "number": "06",
+    "headline": {
+      "part1": "Pięć gwiazdek,",
+      "accent": "sto dziewięć razy."
+    },
+    "lede": "Mały wycinek opinii z Google — po niderlandzku, angielsku i polsku, tak jak nasi klienci.",
+    "viewAll": "Zobacz wszystkie 109 opinii na Google →",
     "items": [
       {
-        "text": "Best haircut I've had since I've moved to the Netherlands. Great place, will definitely come back!",
+        "text": "Best haircut I've had since I moved to the Netherlands. Great place — I'll definitely be back.",
         "name": "M. Johnson",
-        "date": "2024"
+        "date": "2024 · EN"
       },
       {
-        "text": "Great service! I was welcomed, offered water and coffee before my cut. Very professional team.",
+        "text": "Vriendelijk ontvangen met koffie, heldere uitleg, strakke knipbeurt. Een echt ambacht en een fijne sfeer.",
         "name": "A. de Vries",
-        "date": "2024"
+        "date": "2024 · NL"
       },
       {
-        "text": "Amazing place... super efficient and professional. Atmosphere is amazing. Highly recommend!",
+        "text": "Niesamowite miejsce — bardzo profesjonalne i efektywne. Atmosfera wyjątkowa. Szczerze polecam.",
         "name": "K. Nowak",
-        "date": "2024"
+        "date": "2024 · PL"
       }
     ]
   },
   "location": {
-    "title": "Lokalizacja i godziny otwarcia",
+    "eyebrow": "Lokalizacja i godziny",
+    "number": "07",
+    "headline": {
+      "part1": "De Promesse 113.",
+      "accent": "Dwie minuty od dworca."
+    },
+    "lede": "Lelystad Centrum — spacer od dworca Lelystad Centrum, z parkingiem za rogiem.",
     "openingHours": "Godziny otwarcia",
+    "contact": "Kontakt",
+    "today": "Dziś",
     "days": {
-      "monday": "Poniedzialek",
+      "monday": "Poniedziałek",
       "tuesday": "Wtorek",
-      "wednesday": "Sroda",
+      "wednesday": "Środa",
       "thursday": "Czwartek",
-      "friday": "Piatek",
+      "friday": "Piątek",
       "saturday": "Sobota",
       "sunday": "Niedziela"
     },
     "hours": {
-      "monday": "12:00 - 18:00",
-      "tuesday": "09:00 - 18:00",
-      "wednesday": "09:00 - 18:00",
-      "thursday": "09:00 - 18:00",
-      "friday": "09:00 - 18:00",
-      "saturday": "09:00 - 17:00",
-      "sunday": "Zamkniete"
+      "monday": "12:00 – 18:00",
+      "tuesday": "09:00 – 18:00",
+      "wednesday": "09:00 – 18:00",
+      "thursday": "09:00 – 18:00",
+      "friday": "09:00 – 18:00",
+      "saturday": "09:00 – 17:00",
+      "sunday": "Zamknięte"
     },
-    "nearStation": "2 minuty pieszo od stacji Lelystad Centrum",
-    "email": "info@barbershopthebrothers.nl",
-    "whatsapp": "+31 6 1234 5678",
-    "address": "De Promesse 113, 8232 VZ Lelystad"
+    "labels": {
+      "address": "Adres",
+      "email": "E-mail",
+      "whatsapp": "WhatsApp",
+      "phone": "Telefon",
+      "station": "Dworzec"
+    },
+    "nearStation": "2 min pieszo — Lelystad Centrum",
+    "address": "De Promesse 113, 8232 VZ Lelystad",
+    "directions": "Nawiguj →"
   },
   "footer": {
-    "tagline": "Dobre ciecie, luzna atmosfera i konkretna robota.",
-    "kvk": "KVK: 12345678",
-    "copyright": "© 2026 Barbershop The Brothers - Lelystad",
-    "madeWith": "Zrobione z rzemioslem w Lelystad",
+    "brandTag": "Równe cięcia, dobra atmosfera, zawsze mile widziany. Stały barbershop w Lelystad — dla klientów z NL, UK i PL.",
     "quickLinks": "Szybkie linki",
-    "socials": "Social media"
+    "company": "Firma",
+    "social": "Social",
+    "copyright": "© 2026 Barbershop The Brothers — Lelystad",
+    "madeWith": "Zrobione z rzemiosłem w Lelystad"
   }
 }
