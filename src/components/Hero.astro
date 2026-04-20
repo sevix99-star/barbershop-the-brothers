@@ -1,66 +1,133 @@
 ---
-import { HERO_IMAGE_URL } from "../config/images";
-import { t, type Lang } from "../i18n/utils";
+import { Image } from "astro:assets";
+import { HERO_IMAGE } from "../config/images";
+import { getTranslations, t, type Lang } from "../i18n/utils";
+import OpenStatus from "./OpenStatus.astro";
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
+const tx = getTranslations(lang);
+const stripe = tx.hero.stripe;
 ---
 
 <section
   id="home"
-  class="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pt-28 md:px-8"
+  class="hero relative flex min-h-[92vh] items-end overflow-hidden"
 >
-  <img
-    src={HERO_IMAGE_URL}
-    alt=""
-    class="absolute inset-0 h-full w-full object-cover object-center"
-    width="1920"
-    height="1080"
-    decoding="async"
-    fetchpriority="high"
-    aria-hidden="true"
-  />
-  <div class="absolute inset-0 bg-gradient-to-b from-bg/90 via-bg/65 to-bg" aria-hidden="true"></div>
-
-  <div class="relative mx-auto flex max-w-4xl flex-col items-center text-center">
-    <p class="hero-animate mb-4 text-sm uppercase tracking-[0.35em] text-text-primary/85" style="animation-delay: 0ms;">
-      {t(lang, "hero.subline")}
-    </p>
-    <h1
-      class="hero-animate font-heading text-5xl font-bold leading-tight text-text-primary md:text-7xl"
-      style="animation-delay: 200ms;"
-    >
-      {t(lang, "hero.headline")}
-    </h1>
-    <div class="hero-animate mt-8 flex flex-wrap items-center justify-center gap-4" style="animation-delay: 400ms;">
-      <a
-        href={`/${lang}/#booking`}
-        class="rounded-full bg-gold px-8 py-3 font-semibold text-bg transition hover:bg-gold-hover"
-      >
-        {t(lang, "hero.ctaPrimary")}
-      </a>
-      <a
-        href={`/${lang}/#prices`}
-        class="rounded-full border border-gold px-8 py-3 font-semibold text-gold transition hover:bg-gold/10"
-      >
-        {t(lang, "hero.ctaSecondary")}
-      </a>
-    </div>
+  <div class="absolute inset-0" aria-hidden="true">
+    <Image
+      src={HERO_IMAGE}
+      alt=""
+      widths={[768, 1280, 1920]}
+      sizes="100vw"
+      class="h-full w-full object-cover object-center"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      quality={72}
+    />
     <div
-      class="hero-animate mt-8 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-text-primary backdrop-blur-md shadow-lg"
+      class="absolute inset-0"
+      style="background:radial-gradient(ellipse at 50% 40%, rgba(10,10,10,0.25), rgba(10,10,10,0.9) 70%), linear-gradient(to bottom, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.35) 30%, rgba(10,10,10,0.95) 100%); filter:brightness(0.9) contrast(1.05);"
+    ></div>
+    <div class="absolute inset-0 bg-bg/20"></div>
+  </div>
+
+  <div
+    class="absolute right-6 top-8 z-[3] hidden items-center gap-[10px] text-[10px] uppercase tracking-[0.3em] text-ink-mute md:right-12 md:flex"
+  >
+    <span class="font-cond">{tx.hero.corner.est}</span>
+    <span class="h-px w-10 bg-line" aria-hidden="true"></span>
+    <span class="font-cond">{tx.hero.corner.no}</span>
+  </div>
+
+  <div class="relative z-[2] mx-auto grid w-full max-w-wrap gap-16 px-6 pb-[120px] pt-24 md:grid-cols-[1fr_auto] md:items-end md:gap-16 md:px-12 md:pb-[90px]">
+    <div>
+      <div
+        class="hero-animate mb-7 flex items-center gap-[18px] font-cond text-[13px] uppercase tracking-[0.42em] text-gold"
+        style="animation-delay: 0ms;"
+      >
+        <span class="h-px w-14 bg-gold/70" aria-hidden="true"></span>
+        <span>{tx.hero.eyebrow}</span>
+      </div>
+
+      <h1
+        class="hero-animate font-serif text-[clamp(48px,7.2vw,112px)] font-medium leading-[0.97] tracking-[-0.02em] text-ink"
+        style="animation-delay: 200ms;"
+      >
+        <span>{tx.hero.headline.part1}</span>{" "}
+        <em class="font-medium not-italic italic text-gold">{tx.hero.headline.accent1}</em>
+        <span class="block font-normal">
+          <span>{tx.hero.headline.part2}</span>{" "}
+          <em class="font-medium italic text-gold">{tx.hero.headline.accent2}</em>
+        </span>
+      </h1>
+
+      <div class="hero-animate mt-11 flex flex-wrap gap-[14px]" style="animation-delay: 400ms;">
+        <a href={`/${lang}/#booking`} class="btn btn-gold">
+          {t(lang, "hero.ctaPrimary")} <span class="arrow">→</span>
+        </a>
+        <a href={`/${lang}/#prices`} class="btn btn-ghost">
+          {t(lang, "hero.ctaSecondary")}
+        </a>
+      </div>
+    </div>
+
+    <aside
+      class="hero-animate flex min-w-[260px] flex-col gap-[18px] border-l border-gold-soft px-0 py-[4px] pl-5"
       style="animation-delay: 600ms;"
     >
-      ★ {t(lang, "hero.badge")}
-    </div>
-    <div class="hero-animate mt-4 flex items-center gap-2 text-text-primary/85" style="animation-delay: 600ms;">
-      <svg class="h-5 w-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"></path>
-        <circle cx="12" cy="10" r="2.5"></circle>
-      </svg>
-      <p>{t(lang, "hero.address")}</p>
-    </div>
+      <div>
+        <div class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
+          {tx.hero.ratingLabel}
+        </div>
+        <div class="mt-[6px] font-serif text-[17px] italic text-ink">
+          <span class="tracking-[0.25em] not-italic text-gold">★★★★★</span>
+          <span class="ml-2 font-cond text-[14px] not-italic tracking-[0.2em] text-gold">
+            {tx.hero.ratingValue}
+          </span>
+        </div>
+      </div>
+      <div>
+        <div class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
+          {tx.hero.addressLabel}
+        </div>
+        <div class="mt-[6px] font-serif text-[17px] italic text-ink">
+          De Promesse 113<br />8232 VZ Lelystad
+        </div>
+      </div>
+      <div>
+        <div class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
+          {tx.hero.openLabel}
+        </div>
+        <div class="mt-[6px] text-gold">
+          <OpenStatus lang={lang} variant="hero" />
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div
+    class="absolute inset-x-0 bottom-0 z-[3] hidden items-center justify-between gap-6 border-t border-line-2 bg-bg/60 px-12 py-[18px] backdrop-blur-md md:flex"
+  >
+    {
+      stripe.map((item: string, i: number) => (
+        <div class="flex items-center gap-3 font-cond text-[11px] uppercase tracking-[0.22em] text-ink-dim">
+          <b class="font-semibold tracking-[0.18em] text-gold">{String(i + 1).padStart(2, "0")}</b>
+          <span>{item}</span>
+        </div>
+      ))
+    }
   </div>
 </section>
+
+<div class="rule rule-gold" aria-hidden="true"></div>
+
+<style>
+  .hero em {
+    font-style: italic;
+  }
+</style>

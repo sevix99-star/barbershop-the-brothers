@@ -1,56 +1,169 @@
 ---
-import { getTranslations, t, type Lang } from "../i18n/utils";
+import { getTranslations, type Lang } from "../i18n/utils";
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
-const mapEmbed =
-  import.meta.env.PUBLIC_MAPS_EMBED ??
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2416.1935551711306!2d5.472984276530858!3d52.51268227206159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c617abf8da2dd9%3A0x8f230e4d9df89f12!2sDe%20Promesse%20113%2C%208232%20VZ%20Lelystad!5e0!3m2!1sen!2snl!4v1700000000000!5m2!1sen!2snl";
+const tx = getTranslations(lang);
 
-const tx = getTranslations(lang).location;
-const dayNames = tx.days;
+const dayKeys = [
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
+] as const;
+
+const jsDayToKey: Record<number, (typeof dayKeys)[number]> = {
+  1: "monday",
+  2: "tuesday",
+  3: "wednesday",
+  4: "thursday",
+  5: "friday",
+  6: "saturday",
+  0: "sunday",
+};
+
+const todayKey = jsDayToKey[new Date().getDay()];
+
+const phone = import.meta.env.PUBLIC_PHONE ?? "";
+const email = import.meta.env.PUBLIC_EMAIL ?? "info@barbershopthebrothers.nl";
+const whatsappRaw = import.meta.env.PUBLIC_WHATSAPP ?? "";
+const whatsappDigits = whatsappRaw.replace(/[^\d]/g, "");
+const mapsEmbed =
+  import.meta.env.PUBLIC_MAPS_EMBED ??
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2439.555!2d5.477!3d52.508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDMwJzI5LjAiTiA1wrAyOCczOC42IkU!5e0!3m2!1sen!2snl!4v1700000000000";
+const mapsDirections = "https://www.google.com/maps/dir/?api=1&destination=De+Promesse+113+Lelystad";
 ---
 
-<section id="location" class="px-4 py-24 md:px-8" data-animate>
-  <div class="mx-auto max-w-6xl">
-    <h2 class="section-title section-title--left">{t(lang, "location.title")}</h2>
-
-    <div class="mt-12 grid gap-8 md:grid-cols-2">
-      <div class="h-[400px] overflow-hidden rounded-2xl">
-        <iframe
-          title="Barbershop location map"
-          src={mapEmbed}
-          width="100%"
-          height="100%"
-          style="border:0;"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+<section id="location" class="sec" data-animate>
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num">
+          <span class="tick" aria-hidden="true"></span>
+          <span>{tx.location.number} —</span>
+          <span>{tx.location.eyebrow}</span>
+        </div>
+        <h2 class="mt-[18px]">
+          <span>{tx.location.headline.part1}</span><br />
+          <em>{tx.location.headline.accent}</em>
+        </h2>
       </div>
+      <p class="lede">{tx.location.lede}</p>
+    </div>
 
-      <article class="rounded-2xl border border-border bg-card p-8">
-        <h3 class="font-heading text-2xl text-text-primary">{tx.openingHours}</h3>
-        <div class="mt-6 space-y-2 border-b border-border pb-6">
-          {
-            Object.entries(tx.hours).map(([day, hours]) => (
-              <div class="flex items-center justify-between text-sm">
-                <span class="text-text-secondary">{dayNames[day as keyof typeof dayNames] ?? day}</span>
-                <span class="text-text-primary">{hours}</span>
-              </div>
-            ))
-          }
+    <div class="grid grid-cols-1 gap-0 border border-line md:grid-cols-[1fr_1fr]">
+      <div class="bg-surface p-10 md:p-14">
+        <div class="mb-6 font-cond text-[11px] uppercase tracking-[0.22em] text-gold">
+          {tx.location.openingHours}
         </div>
 
-        <address class="mt-6 space-y-3 not-italic text-sm text-text-secondary">
-          <p>📍 {tx.address}</p>
-          <p>📱 WhatsApp: {tx.whatsapp}</p>
-          <p>📧 {tx.email}</p>
-          <p>🚉 {tx.nearStation}</p>
-        </address>
-      </article>
+        <ul class="mb-10 divide-y divide-line">
+          {
+            dayKeys.map((key) => {
+              const isToday = key === todayKey;
+              return (
+                <li
+                  class={`flex items-center justify-between py-[11px] font-cond text-[12px] uppercase tracking-[0.18em] ${isToday ? "text-gold" : "text-ink"}`}
+                >
+                  <span class="flex items-center gap-3">
+                    {isToday ? <span class="live-dot" aria-hidden="true"></span> : null}
+                    {tx.location.days[key]}
+                    {isToday ? (
+                      <span class="ml-1 font-cond text-[9.5px] tracking-[0.25em] text-gold-soft">
+                        · {tx.location.today}
+                      </span>
+                    ) : null}
+                  </span>
+                  <span class={isToday ? "text-gold" : "text-ink-dim"}>
+                    {tx.location.hours[key]}
+                  </span>
+                </li>
+              );
+            })
+          }
+        </ul>
+
+        <div class="mb-6 font-cond text-[11px] uppercase tracking-[0.22em] text-gold">
+          {tx.location.contact}
+        </div>
+
+        <ul class="space-y-[14px] text-[14px]">
+          <li class="flex flex-col">
+            <span class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
+              {tx.location.labels.address}
+            </span>
+            <span class="text-ink">{tx.location.address}</span>
+          </li>
+          <li class="flex flex-col">
+            <span class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
+              {tx.location.labels.email}
+            </span>
+            <a href={`mailto:${email}`} class="text-ink transition-colors hover:text-gold">
+              {email}
+            </a>
+          </li>
+          {whatsappRaw ? (
+            <li class="flex flex-col">
+              <span class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
+                {tx.location.labels.whatsapp}
+              </span>
+              <a
+                href={`https://wa.me/${whatsappDigits}`}
+                class="text-ink transition-colors hover:text-gold"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {whatsappRaw}
+              </a>
+            </li>
+          ) : null}
+          {phone ? (
+            <li class="flex flex-col">
+              <span class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
+                {tx.location.labels.phone}
+              </span>
+              <a href={`tel:${phone.replace(/\s+/g, "")}`} class="text-ink transition-colors hover:text-gold">
+                {phone}
+              </a>
+            </li>
+          ) : null}
+          <li class="flex flex-col">
+            <span class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
+              {tx.location.labels.station}
+            </span>
+            <span class="text-ink">{tx.location.nearStation}</span>
+          </li>
+        </ul>
+
+        <a
+          href={mapsDirections}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-9 inline-flex items-center gap-2 border-b border-gold pb-1 font-cond text-[11px] uppercase tracking-[0.22em] text-gold transition-opacity hover:opacity-80"
+        >
+          {tx.location.directions}
+        </a>
+      </div>
+
+      <div class="relative min-h-[420px] border-line md:border-l">
+        <iframe
+          src={mapsEmbed}
+          title="Barbershop The Brothers — De Promesse 113, Lelystad"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="absolute inset-0 h-full w-full"
+          style="border:0; filter: grayscale(0.25) contrast(1.05)"
+          aria-label="Map showing Barbershop The Brothers location"
+        ></iframe>
+      </div>
     </div>
   </div>
 </section>
+
+<div class="rule" aria-hidden="true"></div>

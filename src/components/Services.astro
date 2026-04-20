@@ -1,33 +1,97 @@
 ---
 import { getTranslations, t, type Lang } from "../i18n/utils";
+import { SERVICES, ICONS } from "../config/services";
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
-const services = getTranslations(lang).services.items;
+const tx = getTranslations(lang);
+const items = tx.services.items;
+const byId = new Map(items.map((it) => [it.id, it]));
 ---
 
-<section id="services" class="px-4 py-24 md:px-8" data-animate>
-  <div class="mx-auto max-w-6xl">
-    <h2 class="section-title section-title--left">{t(lang, "services.title")}</h2>
-    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+<section id="services" class="sec" data-animate>
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num">
+          <span class="tick" aria-hidden="true"></span>
+          <span>{tx.services.number} —</span>
+          <span>{tx.services.eyebrow}</span>
+        </div>
+        <h2 class="mt-[18px]">
+          <span>{tx.services.headline.part1}</span><br />
+          <em>{tx.services.headline.accent}</em>
+        </h2>
+      </div>
+      <p class="lede">{tx.services.lede}</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
       {
-        services.map((service) => (
-          <article class="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-gold/50 hover:bg-white/10 hover:shadow-2xl hover:shadow-gold/10">
-            <h3 class="font-heading text-xl text-text-primary">{service.name}</h3>
-            <p class="mt-3 text-sm text-text-secondary">{service.desc}</p>
-            <p class="mt-6 text-2xl font-bold text-gold">{service.price}</p>
-            <a
-              href={`/${lang}/#booking`}
-              class="mt-6 inline-flex rounded-full border border-gold px-5 py-2 text-sm font-semibold text-gold transition hover:bg-gold hover:text-bg"
-            >
-              {t(lang, "nav.bookNow")}
-            </a>
-          </article>
-        ))
+        SERVICES.map((entry) => {
+          const item = byId.get(entry.id);
+          if (!item) return null;
+          return (
+            <article class="svc-card group relative overflow-hidden border border-line bg-surface p-9 pt-9 transition-all duration-300 hover:-translate-y-1">
+              <div class="mb-7 text-gold" set:html={ICONS[entry.iconKey]} />
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <h3 class="font-serif text-[24px] font-medium leading-tight tracking-[-0.01em] text-ink">
+                    {item.name}
+                  </h3>
+                  <div class="mt-[6px] font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
+                    {tx.services.serviceNo} {entry.number}
+                    {entry.popular ? ` · ${tx.services.mostBooked}` : ""}
+                  </div>
+                </div>
+              </div>
+              <p class="mt-5 min-h-[44px] text-[14px] leading-[1.65] text-ink-dim">
+                {item.desc}
+              </p>
+              <div class="mt-6 flex items-center justify-between border-t border-line pt-[22px]">
+                <div class="font-serif text-[28px] italic text-gold">
+                  <span class="mr-[6px] align-middle font-cond text-[10px] not-italic uppercase tracking-[0.25em] text-ink-mute">
+                    {tx.services.from}
+                  </span>
+                  {item.price}
+                </div>
+                <a
+                  href={`/${lang}/#booking`}
+                  class="font-cond text-[11px] uppercase tracking-[0.22em] text-gold border border-gold px-4 py-[10px] transition-colors hover:bg-gold hover:text-bg"
+                >
+                  {t(lang, "nav.bookNow")}
+                </a>
+              </div>
+            </article>
+          );
+        })
       }
     </div>
   </div>
 </section>
+
+<div class="rule" aria-hidden="true"></div>
+
+<style>
+  .svc-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    background: var(--color-gold);
+    transition: width 0.4s ease;
+  }
+
+  .svc-card:hover {
+    border-color: #3a3a3a;
+  }
+
+  .svc-card:hover::before {
+    width: 3px;
+  }
+</style>

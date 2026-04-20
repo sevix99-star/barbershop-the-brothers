@@ -1,5 +1,6 @@
 ---
 import LanguageSwitcher from "./LanguageSwitcher.astro";
+import OpenStatus from "./OpenStatus.astro";
 import { t, type Lang } from "../i18n/utils";
 
 interface Props {
@@ -7,39 +8,61 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+
+const navLinks = [
+  { href: "#home", key: "nav.home" },
+  { href: "#services", key: "nav.services" },
+  { href: "#prices", key: "nav.prices" },
+  { href: "#gallery", key: "nav.gallery" },
+  { href: "#booking", key: "nav.bookNow" },
+];
 ---
 
-<nav id="navbar" aria-label="Main navigation" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300">
-  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
-    <a href={`/${lang}/#home`} class="flex items-center gap-2">
-      <span class="font-heading text-2xl font-bold text-gold">EB</span>
-      <span class="font-body text-text-primary">| The Brothers</span>
+<nav
+  id="navbar"
+  aria-label="Main navigation"
+  class="nav sticky top-0 z-50 border-b border-line-2 bg-bg/80 backdrop-blur-md backdrop-saturate-150 transition-colors"
+>
+  <div class="mx-auto flex max-w-wrap items-center justify-between px-6 py-[18px] md:px-12">
+    <a href={`/${lang}/#home`} class="flex items-center gap-[14px] text-ink">
+      <span class="grid h-[34px] w-[34px] place-items-center border border-gold font-serif text-base italic text-gold">EB</span>
+      <span class="h-[18px] w-px bg-line" aria-hidden="true"></span>
+      <span class="font-serif text-xl tracking-wide">The Brothers</span>
     </a>
 
-    <div class="hidden items-center gap-6 md:flex">
-      <a href={`/${lang}/#home`} class="text-sm text-text-secondary transition hover:text-gold">{t(lang, "nav.home")}</a>
-      <a href={`/${lang}/#services`} class="text-sm text-text-secondary transition hover:text-gold">{t(lang, "nav.services")}</a>
-      <a href={`/${lang}/#prices`} class="text-sm text-text-secondary transition hover:text-gold">{t(lang, "nav.prices")}</a>
-      <a href={`/${lang}/#gallery`} class="text-sm text-text-secondary transition hover:text-gold">{t(lang, "nav.gallery")}</a>
-      <a href={`/${lang}/#booking`} class="text-sm text-text-secondary transition hover:text-gold">{t(lang, "nav.bookNow")}</a>
+    <div class="hidden items-center gap-[34px] lg:flex">
+      {
+        navLinks.map((link) => (
+          <a
+            href={`/${lang}/${link.href}`}
+            class="nav-link relative py-[6px] text-[12px] uppercase tracking-[0.22em] text-ink-dim transition-colors hover:text-ink"
+          >
+            {t(lang, link.key)}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="hidden items-center gap-[18px] lg:flex">
+      <OpenStatus lang={lang} variant="pill" />
       <LanguageSwitcher lang={lang} />
       <a
         href={`/${lang}/#booking`}
-        class="rounded-full bg-gold px-6 py-2 font-semibold text-bg transition hover:bg-gold-hover"
+        class="btn btn-gold"
       >
-        {t(lang, "nav.appointment")}
+        {t(lang, "nav.appointment")} <span class="arrow">→</span>
       </a>
     </div>
 
     <button
       id="mobile-menu-button"
       type="button"
-      class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-text-primary md:hidden"
+      class="inline-flex h-10 w-10 items-center justify-center border border-line text-ink lg:hidden"
       aria-label="Open menu"
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
         <path d="M4 7h16M4 12h16M4 17h16"></path>
       </svg>
     </button>
@@ -47,26 +70,49 @@ const { lang } = Astro.props;
 
   <div
     id="mobile-menu"
-    class="pointer-events-none absolute right-4 top-16 w-64 translate-x-8 rounded-2xl border border-border bg-surface p-4 opacity-0 shadow-xl transition-all duration-300 md:hidden"
+    class="pointer-events-none absolute inset-x-4 top-[74px] border border-line bg-surface-2 p-5 opacity-0 shadow-xl transition-all duration-300 lg:hidden"
   >
     <div class="flex flex-col gap-1">
-      <a href={`/${lang}/#home`} class="rounded-lg px-3 py-2 text-text-secondary transition hover:bg-white/5 hover:text-gold">{t(lang, "nav.home")}</a>
-      <a href={`/${lang}/#services`} class="rounded-lg px-3 py-2 text-text-secondary transition hover:bg-white/5 hover:text-gold">{t(lang, "nav.services")}</a>
-      <a href={`/${lang}/#prices`} class="rounded-lg px-3 py-2 text-text-secondary transition hover:bg-white/5 hover:text-gold">{t(lang, "nav.prices")}</a>
-      <a href={`/${lang}/#gallery`} class="rounded-lg px-3 py-2 text-text-secondary transition hover:bg-white/5 hover:text-gold">{t(lang, "nav.gallery")}</a>
-      <a href={`/${lang}/#booking`} class="rounded-lg px-3 py-2 text-text-secondary transition hover:bg-white/5 hover:text-gold">{t(lang, "nav.bookNow")}</a>
-      <div class="pt-2">
+      {
+        navLinks.map((link) => (
+          <a
+            href={`/${lang}/${link.href}`}
+            class="px-3 py-3 text-[12px] uppercase tracking-[0.22em] text-ink-dim transition hover:text-gold"
+          >
+            {t(lang, link.key)}
+          </a>
+        ))
+      }
+      <div class="pt-3">
         <LanguageSwitcher lang={lang} />
       </div>
       <a
         href={`/${lang}/#booking`}
-        class="mt-2 rounded-full bg-gold px-6 py-2 text-center font-semibold text-bg transition hover:bg-gold-hover"
+        class="btn btn-gold mt-3 justify-center"
       >
-        {t(lang, "nav.appointment")}
+        {t(lang, "nav.appointment")} <span class="arrow">→</span>
       </a>
     </div>
   </div>
 </nav>
+
+<style>
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    height: 1px;
+    background: var(--color-gold);
+    transition: right 0.35s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after {
+    right: 0;
+  }
+</style>
 
 <script>
   const button = document.getElementById("mobile-menu-button");
@@ -74,23 +120,18 @@ const { lang } = Astro.props;
   const links = menu?.querySelectorAll("a");
 
   const closeMenu = () => {
-    menu?.classList.add("pointer-events-none", "opacity-0", "translate-x-8");
+    menu?.classList.add("pointer-events-none", "opacity-0");
     button?.setAttribute("aria-expanded", "false");
   };
-
   const openMenu = () => {
-    menu?.classList.remove("pointer-events-none", "opacity-0", "translate-x-8");
+    menu?.classList.remove("pointer-events-none", "opacity-0");
     button?.setAttribute("aria-expanded", "true");
   };
 
   let isOpen = false;
   button?.addEventListener("click", () => {
     isOpen = !isOpen;
-    if (isOpen) {
-      openMenu();
-    } else {
-      closeMenu();
-    }
+    isOpen ? openMenu() : closeMenu();
   });
 
   document.addEventListener("keydown", (event) => {

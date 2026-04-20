@@ -1,29 +1,91 @@
 ---
-import { getTranslations, t, type Lang } from "../i18n/utils";
+import { getTranslations, type Lang } from "../i18n/utils";
+import { SERVICES } from "../config/services";
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
-const items = getTranslations(lang).pricing.items;
+const tx = getTranslations(lang);
+const items = tx.services.items;
+const byId = new Map(items.map((it) => [it.id, it]));
 ---
 
-<section id="prices" class="bg-surface px-4 py-24 md:px-8" data-animate>
-  <div class="mx-auto max-w-2xl text-center">
-    <h2 class="section-title">{t(lang, "pricing.title")}</h2>
-    <div class="mt-12 rounded-2xl border border-white/10 bg-white/5 p-8 text-left backdrop-blur-sm shadow-lg">
-      <div class="w-full">
+<section id="prices" class="sec bg-[#0C0C0C]" data-animate>
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num">
+          <span class="tick" aria-hidden="true"></span>
+          <span>{tx.pricing.number} —</span>
+          <span>{tx.pricing.eyebrow}</span>
+        </div>
+        <h2 class="mt-[18px]">
+          <span>{tx.pricing.headline.part1}</span><br />
+          <em>{tx.pricing.headline.accent}</em>
+        </h2>
+      </div>
+      <p class="lede">{tx.pricing.lede}</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-16 md:grid-cols-[1fr_1.2fr] md:items-start">
+      <div class="md:sticky md:top-[100px]">
+        <div class="eyebrow">
+          <span class="dot"></span>{tx.pricing.mostBookedLabel}
+        </div>
+        <p class="pull relative my-7 max-w-[380px] font-serif text-[26px] italic leading-[1.45] text-ink">
+          <span
+            class="block font-serif italic text-gold"
+            style="font-size:90px;line-height:0.6;margin-bottom:-10px"
+            aria-hidden="true">“</span>
+          {tx.pricing.quote}
+        </p>
+        <p class="mt-7 max-w-[400px] border-t border-line pt-[22px] text-[13px] leading-[1.6] text-ink-mute">
+          {tx.pricing.note}
+        </p>
+      </div>
+
+      <div class="overflow-hidden border border-line bg-surface-2">
         {
-          items.map((item) => (
-            <div class="flex items-center justify-between border-b border-border py-3 last:border-0">
-              <span class="text-text-primary">{item.service}</span>
-              <span class="font-semibold text-gold">{item.price}</span>
-            </div>
-          ))
+          SERVICES.map((entry, idx) => {
+            const item = byId.get(entry.id);
+            if (!item) return null;
+            const isLast = idx === SERVICES.length - 1;
+            return (
+              <div
+                class={`prow grid grid-cols-[auto_1fr_auto] items-center gap-6 px-9 py-[26px] transition-colors hover:bg-[#1a1a1a] ${isLast ? "" : "border-b border-line"} ${entry.popular ? "popular" : ""}`}
+              >
+                <span class="font-cond text-[11px] uppercase tracking-[0.2em] text-ink-mute">
+                  {entry.number}
+                </span>
+                <div class={`font-serif text-[20px] tracking-[-0.01em] ${entry.popular ? "text-gold" : "text-ink"}`}>
+                  {item.name}
+                  {entry.popular ? (
+                    <span class="ml-[14px] inline-flex items-center gap-2 bg-gold px-[10px] py-1 align-middle font-cond text-[9.5px] font-semibold uppercase tracking-[0.22em] text-bg">
+                      {tx.pricing.popularPill}
+                    </span>
+                  ) : null}
+                  <small class="mt-1 block font-body text-[12px] font-normal tracking-normal text-ink-mute">
+                    {item.duration}
+                  </small>
+                </div>
+                <span class="font-serif text-[26px] italic tracking-[-0.01em] text-gold">
+                  {item.price}
+                </span>
+              </div>
+            );
+          })
         }
       </div>
-      <p class="mt-6 text-sm italic text-text-secondary">{t(lang, "pricing.note")}</p>
     </div>
   </div>
 </section>
+
+<div class="rule" aria-hidden="true"></div>
+
+<style>
+  .prow.popular {
+    background: linear-gradient(90deg, rgba(201, 168, 76, 0.08), transparent 70%);
+  }
+</style>

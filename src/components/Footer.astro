@@ -1,43 +1,129 @@
 ---
-import { t, type Lang } from "../i18n/utils";
+import { getTranslations, t, type Lang } from "../i18n/utils";
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
+const tx = getTranslations(lang);
+
+const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL ?? "";
+const facebookUrl = import.meta.env.PUBLIC_FACEBOOK_URL ?? "";
+const tiktokUrl = import.meta.env.PUBLIC_TIKTOK_URL ?? "";
+const whatsappRaw = import.meta.env.PUBLIC_WHATSAPP ?? "";
+const whatsappUrl = whatsappRaw ? `https://wa.me/${whatsappRaw.replace(/[^\d]/g, "")}` : "";
+const kvk = import.meta.env.PUBLIC_KVK ?? "";
+const btw = import.meta.env.PUBLIC_BTW ?? "";
+
+const quickLinks = [
+  { href: "#home", key: "nav.home" },
+  { href: "#services", key: "nav.services" },
+  { href: "#prices", key: "nav.prices" },
+  { href: "#gallery", key: "nav.gallery" },
+  { href: "#booking", key: "nav.bookNow" },
+  { href: "#location", key: "nav.location" },
+];
+
+const socials = [
+  { href: instagramUrl, label: "Instagram", icon: "IG" },
+  { href: facebookUrl, label: "Facebook", icon: "FB" },
+  { href: whatsappUrl, label: "WhatsApp", icon: "WA" },
+  { href: tiktokUrl, label: "TikTok", icon: "TT" },
+].filter((s) => Boolean(s.href));
 ---
 
-<footer class="border-t border-border bg-surface px-4 py-14 md:px-8">
-  <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-3">
-    <div>
-      <p class="font-heading text-3xl text-gold">EB | The Brothers</p>
-      <p class="mt-3 text-sm text-text-secondary">{t(lang, "footer.tagline")}</p>
-      <p class="mt-4 text-sm text-text-secondary">{t(lang, "footer.kvk")}</p>
-    </div>
+<footer class="border-t border-line bg-[#0A0A0A] pb-10 pt-[100px]">
+  <div class="wrap">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
+      <div>
+        <div class="mb-4 flex items-center gap-[14px]">
+          <span class="grid h-[34px] w-[34px] place-items-center border border-gold font-serif text-base italic text-gold">EB</span>
+          <span class="font-serif text-xl tracking-wide text-ink">The Brothers</span>
+        </div>
+        <p class="max-w-[400px] text-[14px] leading-[1.65] text-ink-dim">
+          {tx.footer.brandTag}
+        </p>
+        {socials.length > 0 ? (
+          <div class="mt-6 flex flex-wrap gap-3">
+            {socials.map((s) => (
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex h-10 w-10 items-center justify-center border border-line font-cond text-[10px] uppercase tracking-[0.22em] text-ink-dim transition-colors hover:border-gold hover:text-gold"
+              >
+                <span aria-hidden="true">{s.icon}</span>
+                <span class="sr-only">{s.label} (opens in new tab)</span>
+              </a>
+            ))}
+          </div>
+        ) : null}
+      </div>
 
-    <div>
-      <p class="font-semibold text-text-primary">{t(lang, "footer.quickLinks")}</p>
-      <ul class="mt-3 space-y-2 text-sm text-text-secondary">
-        <li><a href={`/${lang}/#home`} class="transition hover:text-gold">{t(lang, "nav.home")}</a></li>
-        <li><a href={`/${lang}/#services`} class="transition hover:text-gold">{t(lang, "nav.services")}</a></li>
-        <li><a href={`/${lang}/#prices`} class="transition hover:text-gold">{t(lang, "nav.prices")}</a></li>
-        <li><a href={`/${lang}/#gallery`} class="transition hover:text-gold">{t(lang, "nav.gallery")}</a></li>
-      </ul>
-    </div>
+      <div>
+        <div class="mb-5 font-cond text-[11px] uppercase tracking-[0.22em] text-gold">
+          {tx.footer.quickLinks}
+        </div>
+        <ul class="space-y-[10px]">
+          {
+            quickLinks.map((link) => (
+              <li>
+                <a
+                  href={`/${lang}/${link.href}`}
+                  class="font-cond text-[12px] uppercase tracking-[0.2em] text-ink-dim transition-colors hover:text-gold"
+                >
+                  {t(lang, link.key)}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
 
-    <div>
-      <p class="font-semibold text-text-primary">{t(lang, "footer.socials")}</p>
-      <div class="mt-3 flex flex-col gap-2 text-sm text-text-secondary">
-        <a href="https://www.instagram.com/barbershop.the.brothers.eb/" target="_blank" rel="noopener noreferrer" class="transition hover:text-gold">Instagram (@barbershop.the.brothers.eb)</a>
-        <a href="https://www.tiktok.com/@barbershop.the.brothers.eb" target="_blank" rel="noopener noreferrer" class="transition hover:text-gold">TikTok</a>
-        <a href="https://www.facebook.com/barbershopthebrothers" target="_blank" rel="noopener noreferrer" class="transition hover:text-gold">Facebook</a>
+      <div>
+        <div class="mb-5 font-cond text-[11px] uppercase tracking-[0.22em] text-gold">
+          {tx.footer.company}
+        </div>
+        <ul class="space-y-[10px] font-cond text-[12px] uppercase tracking-[0.18em] text-ink-dim">
+          <li>{tx.location.address}</li>
+          {kvk ? <li>KVK: {kvk}</li> : null}
+          {btw ? <li>BTW: {btw}</li> : null}
+        </ul>
+      </div>
+
+      <div>
+        <div class="mb-5 font-cond text-[11px] uppercase tracking-[0.22em] text-gold">
+          {tx.footer.social}
+        </div>
+        <ul class="space-y-[10px]">
+          {socials.length === 0 ? (
+            <li class="font-cond text-[11px] uppercase tracking-[0.2em] text-ink-mute">—</li>
+          ) : (
+            socials.map((s) => (
+              <li>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-cond text-[12px] uppercase tracking-[0.2em] text-ink-dim transition-colors hover:text-gold"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))
+          )}
+        </ul>
       </div>
     </div>
-  </div>
 
-  <div class="mx-auto mt-10 max-w-6xl border-t border-border pt-6 text-sm text-text-secondary">
-    <p>{t(lang, "footer.copyright")}</p>
-    <p class="mt-1">{t(lang, "footer.madeWith")}</p>
+    <div class="mt-14 rule rule-gold" aria-hidden="true"></div>
+
+    <div class="mt-6 flex flex-col items-start justify-between gap-2 font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute md:flex-row md:items-center">
+      <span>{tx.footer.copyright}</span>
+      <span class="font-serif text-[13px] normal-case italic tracking-normal text-ink-mute">
+        {tx.footer.madeWith}
+      </span>
+    </div>
   </div>
 </footer>

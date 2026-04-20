@@ -1,45 +1,124 @@
 ---
-import { t, type Lang } from "../i18n/utils";
+import { getTranslations, type Lang } from "../i18n/utils";
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
-const bookingUrl =
-  import.meta.env.PUBLIC_BOOKING_URL ?? "https://www.fresha.com/a/barbershop-the-brothers-lelystad";
-const whatsapp = (import.meta.env.PUBLIC_WHATSAPP ?? "+31600000000").replace(/[^\d]/g, "");
+const tx = getTranslations(lang);
+
+const bookingUrl = import.meta.env.PUBLIC_BOOKING_URL ?? "";
+const whatsappRaw = import.meta.env.PUBLIC_WHATSAPP ?? "";
+const whatsappDigits = whatsappRaw.replace(/[^\d]/g, "");
+const whatsappUrl = whatsappDigits ? `https://wa.me/${whatsappDigits}` : "";
+const whatsappDisplay = whatsappRaw || "";
 ---
 
-<section id="booking" class="px-4 py-24 md:px-8" data-animate>
-  <div class="mx-auto max-w-6xl">
-    <h2 class="section-title section-title--left">{t(lang, "booking.title")}</h2>
-
-    <div class="mt-12 grid gap-8 md:grid-cols-2">
-      <div class="flex min-h-[300px] flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm shadow-xl md:min-h-[400px]">
-        <p class="text-text-secondary">{t(lang, "booking.fallback")}</p>
-        <a
-          href={bookingUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-4 inline-flex rounded-full border border-gold px-6 py-2 text-gold transition hover:bg-gold hover:text-bg"
-        >
-          Fresha
-        </a>
+<section id="booking" class="sec" data-animate>
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num">
+          <span class="tick" aria-hidden="true"></span>
+          <span>{tx.booking.number} —</span>
+          <span>{tx.booking.eyebrow}</span>
+        </div>
+        <h2 class="mt-[18px]">
+          <span>{tx.booking.headline.part1}</span><br />
+          <em>{tx.booking.headline.accent}</em>
+        </h2>
       </div>
+      <p class="lede">{tx.booking.lede}</p>
+    </div>
 
-      <article class="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm shadow-xl">
-        <h3 class="font-heading text-3xl text-text-primary">{t(lang, "booking.whatsapp")}</h3>
-        <p class="mt-4 text-text-secondary">{t(lang, "booking.walkIn")}</p>
-        <a
-          href={`https://wa.me/${whatsapp}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-8 inline-flex rounded-full bg-[#075E30] px-8 py-4 text-lg font-semibold text-white transition hover:brightness-110"
-        >
-          WhatsApp
-        </a>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-[1.2fr_1fr]">
+      <article
+        class="bcard relative flex min-h-[380px] flex-col justify-between overflow-hidden border border-gold-soft p-10 md:p-14"
+        style="background:linear-gradient(135deg,#1A1A1A 0%, #0f0f0f 100%);"
+      >
+        <span
+          class="pointer-events-none absolute inset-0"
+          style="background:radial-gradient(circle at 85% 15%, rgba(201,168,76,0.15), transparent 50%);"
+          aria-hidden="true"
+        ></span>
+        <div class="relative">
+          <div class="flex items-center gap-3 font-cond text-[10px] uppercase tracking-[0.24em] text-ink-mute">
+            <span class="live-dot"></span>
+            <span>{tx.booking.live}</span>
+          </div>
+          <h3 class="mt-[18px] font-serif text-[clamp(32px,4vw,42px)] font-medium leading-[1.05] tracking-[-0.01em] text-ink">
+            <span>{tx.booking.freshaHeading.part1}</span>{" "}
+            <em class="italic text-gold">{tx.booking.freshaHeading.accent}</em>
+          </h3>
+          <p class="mt-[14px] max-w-[420px] text-[15px] leading-[1.65] text-ink-dim">
+            {tx.booking.freshaDesc}
+          </p>
+        </div>
+        <div class="relative mt-9 flex flex-wrap items-center gap-6">
+          <a
+            href={bookingUrl || "#"}
+            class="btn btn-gold"
+            target={bookingUrl ? "_blank" : undefined}
+            rel={bookingUrl ? "noopener noreferrer" : undefined}
+          >
+            {tx.booking.openFresha}
+            <span class="arrow" aria-hidden="true">→</span>
+            {bookingUrl ? <span class="sr-only">(opens in new tab)</span> : null}
+          </a>
+          <div class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
+            {tx.booking.todaySlots}
+          </div>
+        </div>
       </article>
+
+      <article class="bcard relative flex min-h-[380px] flex-col justify-between border border-line bg-surface p-10 md:p-14">
+        <div>
+          <div class="flex items-center gap-3 font-cond text-[10px] uppercase tracking-[0.24em]" style="color:#25D366">
+            <span class="live-dot live-dot--wa"></span>
+            <span>WhatsApp</span>
+          </div>
+          <h3 class="mt-[18px] font-serif text-[clamp(32px,4vw,42px)] font-medium leading-[1.05] tracking-[-0.01em] text-ink">
+            <span>{tx.booking.whatsappHeading.part1}</span>{" "}
+            <em class="italic text-gold">{tx.booking.whatsappHeading.accent}</em>
+          </h3>
+          <p class="mt-[14px] max-w-[420px] text-[15px] leading-[1.65] text-ink-dim">
+            {tx.booking.whatsappDesc}
+          </p>
+        </div>
+        <div class="mt-9 flex flex-wrap items-center gap-6">
+          {whatsappUrl ? (
+            <a
+              href={whatsappUrl}
+              class="btn btn-ghost"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {tx.booking.startChat}
+              <span class="arrow" aria-hidden="true">→</span>
+              <span class="sr-only">(opens in new tab)</span>
+            </a>
+          ) : (
+            <span class="btn btn-ghost opacity-60" aria-disabled="true">
+              {tx.booking.startChat}
+            </span>
+          )}
+          {whatsappDisplay ? (
+            <div class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
+              {whatsappDisplay}
+            </div>
+          ) : null}
+        </div>
+      </article>
+
+      <div class="border border-dashed border-line p-7 text-center font-serif text-[20px] italic text-ink-dim md:col-span-2">
+        <b class="mr-3 inline-block border border-gold px-[10px] py-1 align-middle font-cond text-[12px] not-italic uppercase tracking-[0.22em] text-gold">
+          {tx.booking.walkIn}
+        </b>
+        <span>{tx.booking.walkInText}</span>
+      </div>
     </div>
   </div>
 </section>
+
+<div class="rule" aria-hidden="true"></div>

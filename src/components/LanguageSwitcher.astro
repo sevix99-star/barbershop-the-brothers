@@ -9,20 +9,21 @@ const { lang } = Astro.props;
 const allLangs = Object.entries(languages) as [Lang, string][];
 ---
 
-<nav class="flex items-center gap-2" aria-label="Language switcher">
+<nav class="flex items-center border border-line p-[3px]" aria-label="Language switcher">
   {
     allLangs.map(([code, label]) => (
       <a
         href={`/${code}/`}
         data-lang-switch
-        class={`rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider transition ${
+        class:list={[
+          "font-cond text-[11px] px-[10px] py-[6px] tracking-[0.18em] uppercase transition-colors",
           lang === code
-            ? "border-gold bg-gold text-bg"
-            : "border-border text-text-secondary hover:border-gold hover:text-gold"
-        }`}
+            ? "bg-gold text-bg"
+            : "text-ink-dim hover:text-ink",
+        ]}
         aria-label={`${label} (${code.toUpperCase()})`}
       >
-        {code}
+        {code.toUpperCase()}
       </a>
     ))
   }
