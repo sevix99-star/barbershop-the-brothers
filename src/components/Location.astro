@@ -1,5 +1,6 @@
 ---
 import { getTranslations, type Lang } from "../i18n/utils";
+import { CONTACT, buildWhatsAppUrl } from "../config/contact";
 
 interface Props {
   lang: Lang;
@@ -30,14 +31,18 @@ const jsDayToKey: Record<number, (typeof dayKeys)[number]> = {
 
 const todayKey = jsDayToKey[new Date().getDay()];
 
-const phone = import.meta.env.PUBLIC_PHONE ?? "";
-const email = import.meta.env.PUBLIC_EMAIL ?? "info@barbershopthebrothers.nl";
-const whatsappRaw = import.meta.env.PUBLIC_WHATSAPP ?? "";
-const whatsappDigits = whatsappRaw.replace(/[^\d]/g, "");
-const mapsEmbed =
-  import.meta.env.PUBLIC_MAPS_EMBED ??
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2439.555!2d5.477!3d52.508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTLCsDMwJzI5LjAiTiA1wrAyOCczOC42IkU!5e0!3m2!1sen!2snl!4v1700000000000";
-const mapsDirections = "https://www.google.com/maps/dir/?api=1&destination=De+Promesse+113+Lelystad";
+const phone = CONTACT.phone;
+const email = CONTACT.email;
+const whatsappUrl = buildWhatsAppUrl(lang);
+const whatsappDisplay = CONTACT.whatsapp;
+const mapsEmbed = CONTACT.googleMapsEmbed;
+const mapsDirections = CONTACT.googleMapsDirections;
+
+const mapLabels: Record<Lang, string> = {
+  nl: "Kaart laden (vereist cookies)",
+  en: "Load map (requires cookies)",
+  pl: "Załaduj mapę (wymaga cookies)",
+};
 ---
 
 <section id="location" class="sec" data-animate>
@@ -108,18 +113,18 @@ const mapsDirections = "https://www.google.com/maps/dir/?api=1&destination=De+Pr
               {email}
             </a>
           </li>
-          {whatsappRaw ? (
+          {whatsappUrl ? (
             <li class="flex flex-col">
               <span class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
                 {tx.location.labels.whatsapp}
               </span>
               <a
-                href={`https://wa.me/${whatsappDigits}`}
+                href={whatsappUrl}
                 class="text-ink transition-colors hover:text-gold"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {whatsappRaw}
+                {whatsappDisplay}
               </a>
             </li>
           ) : null}
@@ -151,19 +156,105 @@ const mapsDirections = "https://www.google.com/maps/dir/?api=1&destination=De+Pr
         </a>
       </div>
 
-      <div class="relative min-h-[420px] border-line md:border-l">
-        <iframe
-          src={mapsEmbed}
-          title="Barbershop The Brothers — De Promesse 113, Lelystad"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          class="absolute inset-0 h-full w-full"
-          style="border:0; filter: grayscale(0.25) contrast(1.05)"
-          aria-label="Map showing Barbershop The Brothers location"
-        ></iframe>
+      {/* Cookie-gated Google Maps embed */}
+      <div class="relative min-h-[420px] border-line md:border-l" id="map-container">
+        {/* Placeholder shown until cookie consent is given */}
+        <div
+          id="map-placeholder"
+          class="absolute inset-0 flex flex-col items-center justify-center gap-6 bg-surface p-10"
+        >
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            fill="none"
+            aria-hidden="true"
+            class="text-gold"
+          >
+            <path
+              d="M20 4C13.373 4 8 9.373 8 16c0 9 12 20 12 20s12-11 12-20c0-6.627-5.373-12-12-12zm0 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"
+              fill="currentColor"
+            />
+          </svg>
+          <div class="text-center">
+            <p class="font-cond text-[13px] uppercase tracking-[0.2em] text-ink">
+              {tx.location.address}
+            </p>
+            <p class="mt-1 font-cond text-[11px] uppercase tracking-[0.18em] text-ink-mute">
+              Lelystad, Nederland
+            </p>
+          </div>
+          {mapsEmbed ? (
+            <button
+              id="load-map-btn"
+              class="btn btn-ghost text-[11px]"
+              data-embed={mapsEmbed}
+            >
+              {mapLabels[lang]}
+            </button>
+          ) : (
+            <a
+              href={mapsDirections}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-ghost text-[11px]"
+            >
+              {tx.location.directions}
+              <span class="sr-only">(opens in new tab)</span>
+            </a>
+          )}
+        </div>
+
+        {/* Iframe injected by JS only after cookie consent */}
+        <div id="map-frame-slot" class="absolute inset-0 hidden"></div>
       </div>
     </div>
   </div>
 </section>
 
 <div class="rule" aria-hidden="true"></div>
+
+<script>
+  function loadMap() {
+    const placeholder = document.getElementById("map-placeholder");
+    const slot = document.getElementById("map-frame-slot");
+    const btn = document.getElementById("load-map-btn") as HTMLButtonElement | null;
+    if (!placeholder || !slot) return;
+
+    const embedSrc = btn?.dataset.embed ?? placeholder.dataset.embed ?? "";
+    if (!embedSrc) return;
+
+    placeholder.classList.add("hidden");
+    slot.classList.remove("hidden");
+    slot.innerHTML = `<iframe
+      src="${embedSrc}"
+      title="Barbershop The Brothers — De Promesse 113, Lelystad"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      class="absolute inset-0 h-full w-full"
+      style="border:0; filter: grayscale(0.25) contrast(1.05)"
+      aria-label="Map showing Barbershop The Brothers location"
+    ></iframe>`;
+  }
+
+  function checkConsentAndLoad() {
+    if (localStorage.getItem("cookie_consent") === "accepted") {
+      loadMap();
+    }
+  }
+
+  // Check on page load
+  checkConsentAndLoad();
+
+  // React to consent given during this session
+  window.addEventListener("cookie-consent", (e) => {
+    if ((e as CustomEvent).detail === "accepted") loadMap();
+  });
+
+  // Manual "Load map" button (grants implied consent for the map)
+  document.getElementById("load-map-btn")?.addEventListener("click", () => {
+    localStorage.setItem("cookie_consent", "accepted");
+    window.dispatchEvent(new CustomEvent("cookie-consent", { detail: "accepted" }));
+    loadMap();
+  });
+</script>

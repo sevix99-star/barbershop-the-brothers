@@ -1,5 +1,6 @@
 ---
 import { getTranslations, t, type Lang } from "../i18n/utils";
+import { CONTACT, buildWhatsAppUrl } from "../config/contact";
 
 interface Props {
   lang: Lang;
@@ -8,13 +9,9 @@ interface Props {
 const { lang } = Astro.props;
 const tx = getTranslations(lang);
 
-const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL ?? "";
-const facebookUrl = import.meta.env.PUBLIC_FACEBOOK_URL ?? "";
-const tiktokUrl = import.meta.env.PUBLIC_TIKTOK_URL ?? "";
-const whatsappRaw = import.meta.env.PUBLIC_WHATSAPP ?? "";
-const whatsappUrl = whatsappRaw ? `https://wa.me/${whatsappRaw.replace(/[^\d]/g, "")}` : "";
-const kvk = import.meta.env.PUBLIC_KVK ?? "";
-const btw = import.meta.env.PUBLIC_BTW ?? "";
+const whatsappUrl = buildWhatsAppUrl(lang);
+const kvk = CONTACT.kvk;
+const btw = CONTACT.btw;
 
 const quickLinks = [
   { href: "#home", key: "nav.home" },
@@ -26,10 +23,10 @@ const quickLinks = [
 ];
 
 const socials = [
-  { href: instagramUrl, label: "Instagram", icon: "IG" },
-  { href: facebookUrl, label: "Facebook", icon: "FB" },
+  { href: CONTACT.instagram, label: "Instagram", icon: "IG" },
+  { href: CONTACT.facebook, label: "Facebook", icon: "FB" },
   { href: whatsappUrl, label: "WhatsApp", icon: "WA" },
-  { href: tiktokUrl, label: "TikTok", icon: "TT" },
+  { href: CONTACT.tiktok, label: "TikTok", icon: "TT" },
 ].filter((s) => Boolean(s.href));
 ---
 

@@ -11,7 +11,11 @@ import "@fontsource/dm-sans/600.css";
 import "../styles/global.css";
 import { getImage } from "astro:assets";
 import { HERO_IMAGE } from "../config/images";
+import { CONTACT } from "../config/contact";
 import { t, type Lang } from "../i18n/utils";
+import CookieBanner from "../components/CookieBanner.astro";
+import FloatingBookCTA from "../components/FloatingBookCTA.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
 
 interface Props {
   lang: Lang;
@@ -24,7 +28,7 @@ const baseUrl = "https://barbershopthebrothers.nl";
 const canonicalUrl = `${baseUrl}/${lang}/`;
 const locales: Record<Lang, string> = {
   nl: "nl_NL",
-  en: "en_US",
+  en: "en_GB",
   pl: "pl_PL",
 };
 
@@ -35,13 +39,13 @@ const heroPreload = await getImage({
   quality: 72,
 });
 
-const phone = import.meta.env.PUBLIC_PHONE ?? "";
-const email = import.meta.env.PUBLIC_EMAIL ?? "";
+const ogImageUrl = `${baseUrl}${heroPreload.src}`;
+
 const schemaData = {
   "@context": "https://schema.org",
-  "@type": "Barber",
+  "@type": "BarberShop",
   name: "Barbershop The Brothers",
-  image: `${baseUrl}/og-image.jpg`,
+  image: ogImageUrl,
   address: {
     "@type": "PostalAddress",
     streetAddress: "De Promesse 113",
@@ -51,15 +55,20 @@ const schemaData = {
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 52.5085,
-    longitude: 5.4774,
+    latitude: 52.5079,
+    longitude: 5.4749,
   },
   url: baseUrl,
-  ...(phone ? { telephone: phone } : {}),
-  ...(email ? { email } : {}),
+  telephone: CONTACT.phone || CONTACT.whatsapp || undefined,
+  email: CONTACT.email,
   openingHoursSpecification: [
     { "@type": "OpeningHoursSpecification", dayOfWeek: "Monday", opens: "12:00", closes: "18:00" },
-    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "18:00",
+    },
     { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "17:00" },
   ],
   aggregateRating: {
@@ -67,7 +76,9 @@ const schemaData = {
     ratingValue: "5.0",
     reviewCount: "109",
   },
-  priceRange: "€€",
+  priceRange: "€10–€35",
+  currenciesAccepted: "EUR",
+  paymentAccepted: "Cash, Card",
 };
 ---
 
@@ -91,7 +102,7 @@ const schemaData = {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${baseUrl}/og-image.jpg`} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:locale" content={locales[lang]} />
 
@@ -104,6 +115,10 @@ const schemaData = {
       Skip to content
     </a>
     <slot />
+
+    <CookieBanner lang={lang} />
+    <FloatingBookCTA lang={lang} />
+    <WhatsAppButton lang={lang} />
 
     <script>
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

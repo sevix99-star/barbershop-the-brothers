@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { getTranslations, type Lang } from "../i18n/utils";
 import { GALLERY_CELLS } from "../config/images";
+import { CONTACT } from "../config/contact";
 
 interface Props {
   lang: Lang;
@@ -11,7 +12,7 @@ const { lang } = Astro.props;
 const tx = getTranslations(lang);
 const labels = tx.gallery.labels;
 
-const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL ?? "https://www.instagram.com/";
+const instagramUrl = CONTACT.instagram || "https://www.instagram.com/barbershop.the.brothers.eb/";
 ---
 
 <section id="gallery" class="sec" data-animate>
@@ -31,21 +32,27 @@ const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL ?? "https://www.instag
       <p class="lede">{tx.gallery.lede}</p>
     </div>
 
-    <div class="gal">
+    <div class="gal" id="gallery-grid">
       {
-        GALLERY_CELLS.map((cell) => (
+        GALLERY_CELLS.map((cell, idx) => (
           <div class={`cell ${cell.area} relative overflow-hidden bg-[#1a1a1a]`}>
-            <Image
-              src={cell.src}
-              alt={labels[cell.labelKey] ?? ""}
-              widths={[480, 800, 1200]}
-              sizes="(min-width: 960px) 33vw, 100vw"
-              class="h-full w-full object-cover"
-              loading="lazy"
-              decoding="async"
-              quality={72}
-            />
-            <div class="lbl absolute bottom-3 left-[14px] bg-bg/60 px-[10px] py-[6px] font-cond text-[10px] uppercase tracking-[0.22em] text-ink backdrop-blur-sm">
+            <button
+              class="gallery-trigger block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              data-index={idx}
+              aria-label={labels[cell.labelKey] ?? `Gallery image ${idx + 1}`}
+            >
+              <Image
+                src={cell.src}
+                alt={labels[cell.labelKey] ?? ""}
+                widths={[480, 800, 1200]}
+                sizes="(min-width: 960px) 33vw, 100vw"
+                class="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+                quality={72}
+              />
+            </button>
+            <div class="lbl pointer-events-none absolute bottom-3 left-[14px] bg-bg/60 px-[10px] py-[6px] font-cond text-[10px] uppercase tracking-[0.22em] text-ink backdrop-blur-sm">
               {labels[cell.labelKey]}
             </div>
           </div>
@@ -73,6 +80,53 @@ const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL ?? "https://www.instag
 
 <div class="rule" aria-hidden="true"></div>
 
+{/* Lightbox dialog */}
+<dialog
+  id="gallery-lightbox"
+  class="m-0 max-h-none max-w-none bg-transparent p-0"
+  aria-label="Image lightbox"
+  aria-modal="true"
+>
+  <div class="fixed inset-0 z-[200] flex items-center justify-center">
+    <button
+      id="lb-close"
+      class="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-bg/80 font-cond text-[18px] text-ink backdrop-blur-md transition-colors hover:bg-gold hover:text-bg focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+      aria-label="Close lightbox"
+    >
+      ×
+    </button>
+
+    <button
+      id="lb-prev"
+      class="absolute left-3 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-bg/80 font-cond text-[18px] text-ink backdrop-blur-md transition-colors hover:bg-gold hover:text-bg focus:outline-none focus-visible:ring-2 focus-visible:ring-gold md:left-6"
+      aria-label="Previous image"
+    >
+      ‹
+    </button>
+
+    <button
+      id="lb-next"
+      class="absolute right-3 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-bg/80 font-cond text-[18px] text-ink backdrop-blur-md transition-colors hover:bg-gold hover:text-bg focus:outline-none focus-visible:ring-2 focus-visible:ring-gold md:right-6"
+      aria-label="Next image"
+    >
+      ›
+    </button>
+
+    <div id="lb-img-wrap" class="max-h-[90vh] max-w-[90vw]">
+      <img
+        id="lb-img"
+        src=""
+        alt=""
+        class="max-h-[90vh] max-w-[90vw] object-contain shadow-2xl"
+      />
+      <p
+        id="lb-caption"
+        class="mt-3 text-center font-cond text-[11px] uppercase tracking-[0.22em] text-ink-dim"
+      ></p>
+    </div>
+  </div>
+</dialog>
+
 <style>
   .gal {
     display: grid;
@@ -86,7 +140,8 @@ const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL ?? "https://www.instag
     filter: brightness(0.9) saturate(0.9);
   }
 
-  .cell:hover img {
+  .cell:hover img,
+  .cell:focus-within img {
     transform: scale(1.06);
     filter: brightness(1) saturate(1);
   }
@@ -131,4 +186,107 @@ const instagramUrl = import.meta.env.PUBLIC_INSTAGRAM_URL ?? "https://www.instag
       transition: none;
     }
   }
+
+  /* Lightbox backdrop */
+  #gallery-lightbox::backdrop {
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(4px);
+  }
+
+  #gallery-lightbox[open] {
+    display: block;
+  }
+
+  #gallery-lightbox:not([open]) {
+    display: none;
+  }
 </style>
+
+<script>
+  interface LightboxImage {
+    src: string;
+    alt: string;
+  }
+
+  const dialog = document.getElementById("gallery-lightbox") as HTMLDialogElement | null;
+  const lbImg = document.getElementById("lb-img") as HTMLImageElement | null;
+  const lbCaption = document.getElementById("lb-caption");
+  const lbClose = document.getElementById("lb-close");
+  const lbPrev = document.getElementById("lb-prev");
+  const lbNext = document.getElementById("lb-next");
+
+  if (!dialog || !lbImg || !lbCaption || !lbClose || !lbPrev || !lbNext) {
+    // Graceful degradation — lightbox elements missing
+  } else {
+    const triggers = Array.from(
+      document.querySelectorAll<HTMLButtonElement>(".gallery-trigger")
+    );
+
+    // Build image list from the rendered <img> tags inside each trigger
+    const images: LightboxImage[] = triggers.map((btn) => {
+      const img = btn.querySelector("img");
+      return {
+        src: img?.currentSrc || img?.src || "",
+        alt: btn.getAttribute("aria-label") ?? "",
+      };
+    });
+
+    let current = 0;
+    let lastFocused: HTMLElement | null = null;
+
+    function show(idx: number) {
+      current = (idx + images.length) % images.length;
+      const item = images[current];
+      if (!item) return;
+      lbImg!.src = item.src;
+      lbImg!.alt = item.alt;
+      lbCaption!.textContent = item.alt;
+    }
+
+    function open(idx: number) {
+      lastFocused = document.activeElement as HTMLElement;
+      show(idx);
+      dialog!.showModal();
+      lbClose!.focus();
+    }
+
+    function close() {
+      dialog!.close();
+      lastFocused?.focus();
+    }
+
+    // Trigger clicks
+    triggers.forEach((btn, idx) => {
+      btn.addEventListener("click", () => open(idx));
+    });
+
+    // Controls
+    lbClose.addEventListener("click", close);
+    lbPrev.addEventListener("click", () => show(current - 1));
+    lbNext.addEventListener("click", () => show(current + 1));
+
+    // Keyboard navigation
+    dialog.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { close(); return; }
+      if (e.key === "ArrowLeft") { show(current - 1); e.preventDefault(); }
+      if (e.key === "ArrowRight") { show(current + 1); e.preventDefault(); }
+    });
+
+    // Backdrop click closes
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) close();
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    dialog.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0]?.clientX ?? 0;
+    }, { passive: true });
+    dialog.addEventListener("touchend", (e) => {
+      const delta = touchStartX - (e.changedTouches[0]?.clientX ?? 0);
+      if (Math.abs(delta) > 50) {
+        delta > 0 ? show(current + 1) : show(current - 1);
+      }
+    }, { passive: true });
+  }
+</script>

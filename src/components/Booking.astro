@@ -1,5 +1,6 @@
 ---
 import { getTranslations, type Lang } from "../i18n/utils";
+import { CONTACT, buildWhatsAppUrl } from "../config/contact";
 
 interface Props {
   lang: Lang;
@@ -8,11 +9,9 @@ interface Props {
 const { lang } = Astro.props;
 const tx = getTranslations(lang);
 
-const bookingUrl = import.meta.env.PUBLIC_BOOKING_URL ?? "";
-const whatsappRaw = import.meta.env.PUBLIC_WHATSAPP ?? "";
-const whatsappDigits = whatsappRaw.replace(/[^\d]/g, "");
-const whatsappUrl = whatsappDigits ? `https://wa.me/${whatsappDigits}` : "";
-const whatsappDisplay = whatsappRaw || "";
+const bookingUrl = CONTACT.fresha;
+const whatsappUrl = buildWhatsAppUrl(lang);
+const whatsappDisplay = CONTACT.whatsapp;
 ---
 
 <section id="booking" class="sec" data-animate>
@@ -57,14 +56,14 @@ const whatsappDisplay = whatsappRaw || "";
         </div>
         <div class="relative mt-9 flex flex-wrap items-center gap-6">
           <a
-            href={bookingUrl || "#"}
+            href={bookingUrl}
             class="btn btn-gold"
-            target={bookingUrl ? "_blank" : undefined}
-            rel={bookingUrl ? "noopener noreferrer" : undefined}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {tx.booking.openFresha}
             <span class="arrow" aria-hidden="true">→</span>
-            {bookingUrl ? <span class="sr-only">(opens in new tab)</span> : null}
+            <span class="sr-only">(opens in new tab)</span>
           </a>
           <div class="font-cond text-[10px] uppercase tracking-[0.22em] text-ink-mute">
             {tx.booking.todaySlots}

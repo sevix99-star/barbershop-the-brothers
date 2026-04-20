@@ -1,0 +1,50 @@
+---
+import type { Lang } from "../i18n/utils";
+import { CONTACT } from "../config/contact";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const labels: Record<Lang, string> = {
+  nl: "Boek nu →",
+  en: "Book now →",
+  pl: "Rezerwuj →",
+};
+
+const ariaLabels: Record<Lang, string> = {
+  nl: "Boek een afspraak bij Barbershop The Brothers",
+  en: "Book an appointment at Barbershop The Brothers",
+  pl: "Zarezerwuj wizytę w Barbershop The Brothers",
+};
+---
+
+<a
+  id="floating-book-cta"
+  href={CONTACT.fresha}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={ariaLabels[lang]}
+  class="fixed inset-x-0 bottom-0 z-[80] flex h-14 items-center justify-center bg-gold font-cond text-[13px] uppercase tracking-[0.28em] text-bg transition-opacity duration-300 md:hidden"
+>
+  {labels[lang]}
+</a>
+
+<script>
+  const cta = document.getElementById("floating-book-cta");
+  const bookingSection = document.getElementById("booking");
+
+  if (cta && bookingSection) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!cta) return;
+        cta.style.opacity = entry.isIntersecting ? "0" : "1";
+        cta.style.pointerEvents = entry.isIntersecting ? "none" : "auto";
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(bookingSection);
+  }
+</script>
