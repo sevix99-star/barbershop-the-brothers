@@ -1,37 +1,11 @@
 ---
-import type { Lang } from "../i18n/utils";
+import { t, type Lang } from "../i18n/utils";
 
 interface Props {
   lang: Lang;
 }
 
 const { lang } = Astro.props;
-
-const copy = {
-  nl: {
-    message:
-      "We gebruiken cookies om de kaart van Google Maps te laden en om bezoekersstatistieken bij te houden. Je kunt weigeren — dan werkt de site volledig zonder tracking.",
-    accept: "Accepteren",
-    decline: "Weigeren",
-    privacy: "Privacybeleid",
-  },
-  en: {
-    message:
-      "We use cookies to load the Google Maps map and to track visitor statistics. You can decline — the site works fully without tracking.",
-    accept: "Accept",
-    decline: "Decline",
-    privacy: "Privacy policy",
-  },
-  pl: {
-    message:
-      "Używamy plików cookie do ładowania mapy Google Maps i śledzenia statystyk. Możesz odmówić — strona działa w pełni bez śledzenia.",
-    accept: "Akceptuj",
-    decline: "Odrzuć",
-    privacy: "Polityka prywatności",
-  },
-} as const;
-
-const t = copy[lang];
 ---
 
 <div
@@ -39,25 +13,25 @@ const t = copy[lang];
   role="dialog"
   aria-label="Cookie consent"
   aria-live="polite"
-  class="fixed inset-x-0 bottom-0 z-[90] border-t border-line bg-[#0A0A0A]/95 px-6 py-5 backdrop-blur-md"
+  class="fixed inset-x-0 top-0 z-[90] border-b border-line bg-bg/95 px-6 py-5 backdrop-blur-md"
   style="display:none"
 >
   <div class="wrap flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
     <p class="max-w-[680px] text-[13px] leading-[1.65] text-ink-dim">
-      {t.message}
+      {t(lang, "cookie.message")}
     </p>
     <div class="flex shrink-0 flex-wrap gap-3">
       <button
         id="cookie-decline"
         class="btn btn-ghost text-[12px]"
       >
-        {t.decline}
+        {t(lang, "cookie.decline")}
       </button>
       <button
         id="cookie-accept"
         class="btn btn-gold text-[12px]"
       >
-        {t.accept}
+        {t(lang, "cookie.accept")}
       </button>
     </div>
   </div>
@@ -78,7 +52,6 @@ const t = copy[lang];
     hideBanner();
   }
 
-  // Show only when no decision has been made yet
   if (!localStorage.getItem("cookie_consent") && banner) {
     banner.style.display = "block";
   }

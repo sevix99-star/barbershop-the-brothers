@@ -1,5 +1,5 @@
 ---
-import type { Lang } from "../i18n/utils";
+import { t, type Lang } from "../i18n/utils";
 import { buildWhatsAppUrl } from "../config/contact";
 
 interface Props {
@@ -9,12 +9,6 @@ interface Props {
 const { lang } = Astro.props;
 
 const waUrl = buildWhatsAppUrl(lang);
-
-const ariaLabels: Record<Lang, string> = {
-  nl: "Stuur ons een WhatsApp bericht",
-  en: "Send us a WhatsApp message",
-  pl: "Wyślij nam wiadomość WhatsApp",
-};
 ---
 
 {waUrl ? (
@@ -22,11 +16,10 @@ const ariaLabels: Record<Lang, string> = {
     href={waUrl}
     target="_blank"
     rel="noopener noreferrer"
-    aria-label={ariaLabels[lang]}
+    aria-label={t(lang, "ui.whatsappLabel")}
     class="fixed bottom-[72px] right-4 z-[81] flex h-[52px] w-[52px] items-center justify-center rounded-full shadow-lg transition-transform duration-200 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#25D366] md:bottom-6"
     style="background:#25D366"
   >
-    {/* WhatsApp logo SVG — inline, no external dependency */}
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="26"

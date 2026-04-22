@@ -24,6 +24,10 @@ pnpm-debug.log*
 .idea/
 .vercel
 
+# local editor/agent config
+.claude/
+.cursor/
+
 # Lighthouse (local reports)
 lighthouse*.report.html
 lighthouse*.report.json

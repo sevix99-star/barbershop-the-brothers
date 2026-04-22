@@ -1,5 +1,5 @@
 ---
-import { getTranslations, type Lang } from "../i18n/utils";
+import { getTranslations, t, type Lang } from "../i18n/utils";
 import { CONTACT, buildWhatsAppUrl } from "../config/contact";
 
 interface Props {
@@ -38,11 +38,6 @@ const whatsappDisplay = CONTACT.whatsapp;
 const mapsEmbed = CONTACT.googleMapsEmbed;
 const mapsDirections = CONTACT.googleMapsDirections;
 
-const mapLabels: Record<Lang, string> = {
-  nl: "Kaart laden (vereist cookies)",
-  en: "Load map (requires cookies)",
-  pl: "Załaduj mapę (wymaga cookies)",
-};
 ---
 
 <section id="location" class="sec" data-animate>
@@ -190,7 +185,7 @@ const mapLabels: Record<Lang, string> = {
               class="btn btn-ghost text-[11px]"
               data-embed={mapsEmbed}
             >
-              {mapLabels[lang]}
+              {t(lang, "ui.loadMap")}
             </button>
           ) : (
             <a

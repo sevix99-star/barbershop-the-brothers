@@ -266,5 +266,17 @@
     "social": "Social",
     "copyright": "© 2026 Barbershop The Brothers — Lelystad",
     "madeWith": "Zrobione z rzemiosłem w Lelystad"
+  },
+  "ui": {
+    "toggleTheme": "Zmień motyw",
+    "floatingCta": "Rezerwuj →",
+    "floatingCtaLabel": "Zarezerwuj wizytę w Barbershop The Brothers",
+    "whatsappLabel": "Wyślij nam wiadomość WhatsApp",
+    "loadMap": "Załaduj mapę (wymaga cookies)"
+  },
+  "cookie": {
+    "message": "Używamy plików cookie do ładowania mapy Google Maps i śledzenia statystyk. Możesz odmówić — strona działa w pełni bez śledzenia.",
+    "accept": "Akceptuj",
+    "decline": "Odrzuć"
   }
 }

@@ -15,6 +15,7 @@ const allLangs = Object.entries(languages) as [Lang, string][];
       <a
         href={`/${code}/`}
         data-lang-switch
+        data-locale={code}
         class:list={[
           "font-cond text-[11px] px-[10px] py-[6px] tracking-[0.18em] uppercase transition-colors",
           lang === code
@@ -30,12 +31,19 @@ const allLangs = Object.entries(languages) as [Lang, string][];
 </nav>
 
 <script>
+  function setLocaleCookie(locale: string): void {
+    document.cookie =
+      `barbershop-locale=${locale}; path=/; max-age=31536000; SameSite=Lax`;
+  }
+
   const switchLinks = document.querySelectorAll("[data-lang-switch]");
   switchLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
-      if (!window.location.hash) return;
       if (!(event.currentTarget instanceof HTMLAnchorElement)) return;
       const anchor = event.currentTarget;
+      const locale = anchor.dataset.locale;
+      if (locale) setLocaleCookie(locale);
+      if (!window.location.hash) return;
       const url = new URL(anchor.href, window.location.origin);
       url.hash = window.location.hash;
       anchor.href = url.toString();

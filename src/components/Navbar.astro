@@ -1,6 +1,7 @@
 ---
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import OpenStatus from "./OpenStatus.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 import { t, type Lang } from "../i18n/utils";
 
 interface Props {
@@ -46,6 +47,7 @@ const navLinks = [
     <div class="hidden items-center gap-[18px] lg:flex">
       <OpenStatus lang={lang} variant="pill" />
       <LanguageSwitcher lang={lang} />
+      <ThemeToggle lang={lang} />
       <a
         href={`/${lang}/#booking`}
         class="btn btn-gold"
@@ -83,8 +85,9 @@ const navLinks = [
           </a>
         ))
       }
-      <div class="pt-3">
+      <div class="flex items-center gap-3 pt-3">
         <LanguageSwitcher lang={lang} />
+        <ThemeToggle lang={lang} />
       </div>
       <a
         href={`/${lang}/#booking`}
@@ -97,6 +100,11 @@ const navLinks = [
 </nav>
 
 <style>
+  #navbar[data-scrolled="true"] {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(12px) saturate(180%);
+  }
+
   .nav-link::after {
     content: "";
     position: absolute;
@@ -163,4 +171,11 @@ const navLinks = [
       closeMenu();
     }
   });
+
+  const nav = document.getElementById("navbar");
+  const onScroll = () => {
+    if (nav) nav.dataset.scrolled = window.scrollY > 0 ? "true" : "";
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 </script>

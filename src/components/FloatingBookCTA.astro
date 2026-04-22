@@ -1,5 +1,5 @@
 ---
-import type { Lang } from "../i18n/utils";
+import { t, type Lang } from "../i18n/utils";
 import { CONTACT } from "../config/contact";
 
 interface Props {
@@ -7,18 +7,6 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-
-const labels: Record<Lang, string> = {
-  nl: "Boek nu →",
-  en: "Book now →",
-  pl: "Rezerwuj →",
-};
-
-const ariaLabels: Record<Lang, string> = {
-  nl: "Boek een afspraak bij Barbershop The Brothers",
-  en: "Book an appointment at Barbershop The Brothers",
-  pl: "Zarezerwuj wizytę w Barbershop The Brothers",
-};
 ---
 
 <a
@@ -26,10 +14,10 @@ const ariaLabels: Record<Lang, string> = {
   href={CONTACT.fresha}
   target="_blank"
   rel="noopener noreferrer"
-  aria-label={ariaLabels[lang]}
+  aria-label={t(lang, "ui.floatingCtaLabel")}
   class="fixed inset-x-0 bottom-0 z-[80] flex h-14 items-center justify-center bg-gold font-cond text-[13px] uppercase tracking-[0.28em] text-bg transition-opacity duration-300 md:hidden"
 >
-  {labels[lang]}
+  {t(lang, "ui.floatingCta")}
 </a>
 
 <script>

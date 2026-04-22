@@ -34,7 +34,7 @@ const locales: Record<Lang, string> = {
 
 const heroPreload = await getImage({
   src: HERO_IMAGE,
-  widths: [1280, 1920],
+  widths: [768, 1280, 1920],
   format: "avif",
   quality: 72,
 });
@@ -87,11 +87,14 @@ const schemaData = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      (function(){var t=localStorage.getItem('barbershop-theme'),s=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t||s)})();
+    </script>
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
-    <link rel="preload" as="image" href={heroPreload.src} type="image/avif" fetchpriority="high" />
+    <link rel="preload" as="image" href={heroPreload.src} type="image/avif" fetchpriority="high" imagesrcset={heroPreload.srcSet.attribute} imagesizes="100vw" />
 
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="nl" href={`${baseUrl}/nl/`} />

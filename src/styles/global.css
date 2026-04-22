@@ -1,5 +1,56 @@
 @import "tailwindcss";
 
+/* ---- Light theme ---- */
+[data-theme="light"] {
+  --color-bg: #F7F3ED;
+  --color-bg-2: #EDE8E0;
+  --color-surface: #F0EAE0;
+  --color-surface-2: #E8E0D4;
+  --color-card: #F0EAE0;
+  --color-line: #D4C9B8;
+  --color-line-2: #DDD4C6;
+  --color-border: #D4C9B8;
+  --color-gold: #8A6E1E;
+  --color-gold-soft: #A08433;
+  --color-gold-hover: #6A5218;
+  --color-ink: #1A1008;
+  --color-ink-dim: #5A4A35;
+  --color-ink-mute: #9A8A72;
+  --color-text-primary: #1A1008;
+  --color-text-secondary: #5A4A35;
+  --color-text-muted: #9A8A72;
+}
+
+/* ---- Dark theme (mirrors @theme defaults) ---- */
+[data-theme="dark"] {
+  --color-bg: #0A0A0A;
+  --color-bg-2: #121212;
+  --color-surface: #1A1A1A;
+  --color-surface-2: #141414;
+  --color-card: #1A1A1A;
+  --color-line: #2A2A2A;
+  --color-line-2: #1F1F1F;
+  --color-border: #2A2A2A;
+  --color-gold: #C9A84C;
+  --color-gold-soft: #8E7633;
+  --color-gold-hover: #E2C06B;
+  --color-ink: #F5F5F0;
+  --color-ink-dim: #A8A59A;
+  --color-ink-mute: #6E6B62;
+  --color-text-primary: #F5F5F0;
+  --color-text-secondary: #A8A59A;
+  --color-text-muted: #6E6B62;
+}
+
+/* ---- Hero section always uses dark-mode palette (photo background) ---- */
+#home {
+  --color-ink: #F5F5F0;
+  --color-ink-dim: #A8A59A;
+  --color-ink-mute: #6E6B62;
+  --color-gold: #C9A84C;
+  --color-gold-soft: #8E7633;
+}
+
 @theme {
   --color-bg: #0A0A0A;
   --color-bg-2: #121212;
@@ -30,8 +81,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: #0A0A0A;
-    color: #F5F5F0;
+    background-color: var(--color-bg);
+    color: var(--color-ink);
   }
 
   :focus-visible {
@@ -43,9 +94,10 @@
     font-family: "DM Sans", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #0A0A0A;
+    background: var(--color-bg);
     min-height: 100vh;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {
