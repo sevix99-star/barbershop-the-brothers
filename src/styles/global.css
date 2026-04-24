@@ -407,3 +407,16 @@
     animation: none;
   }
 }
+
+/* Skip rendering for off-screen sections to reduce initial paint cost */
+#about, #services, #prices, #gallery, #booking, #reviews, #location {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* #about is within Chrome's ~1.5× viewport rendering threshold and would otherwise
+   be included in the LCP style/layout pass. Keep it hidden until LCP is recorded,
+   then switch to auto via PerformanceObserver (see Layout.astro script). */
+#about:not(.cv-ready) {
+  content-visibility: hidden;
+}

@@ -22,7 +22,7 @@ const navLinks = [
 <nav
   id="navbar"
   aria-label="Main navigation"
-  class="nav sticky top-0 z-50 border-b border-line-2 bg-bg/80 backdrop-blur-md backdrop-saturate-150 transition-colors"
+  class="nav sticky top-0 z-50 border-b border-line-2 bg-bg/80 transition-colors"
 >
   <div class="mx-auto flex max-w-wrap items-center justify-between px-6 py-[18px] md:px-12">
     <a href={`/${lang}/#home`} class="flex items-center gap-[14px] text-ink">
@@ -173,9 +173,9 @@ const navLinks = [
   });
 
   const nav = document.getElementById("navbar");
+  if (nav) nav.dataset.scrolled = "";
   const onScroll = () => {
     if (nav) nav.dataset.scrolled = window.scrollY > 0 ? "true" : "";
   };
   window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
 </script>

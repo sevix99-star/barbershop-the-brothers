@@ -53,7 +53,7 @@ const { lang } = Astro.props;
   }
 
   if (!localStorage.getItem("cookie_consent") && banner) {
-    banner.style.display = "block";
+    requestAnimationFrame(() => { if (banner) banner.style.display = "block"; });
   }
 
   acceptBtn?.addEventListener("click", () => setConsent("accepted"));

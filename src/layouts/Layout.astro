@@ -3,13 +3,11 @@ import "@fontsource/cormorant-garamond/400.css";
 import "@fontsource/cormorant-garamond/400-italic.css";
 import "@fontsource/cormorant-garamond/500.css";
 import "@fontsource/cormorant-garamond/500-italic.css";
-import "@fontsource/cormorant-garamond/600.css";
-import "@fontsource/cormorant-garamond/700.css";
 import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/500.css";
 import "@fontsource/dm-sans/600.css";
-import cormorant700Url from "@fontsource/cormorant-garamond/files/cormorant-garamond-latin-700-normal.woff2?url";
 import cormorant500Url from "@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2?url";
+import cormorant500ItalicUrl from "@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-italic.woff2?url";
 import dmSans400Url from "@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2?url";
 import dmSans600Url from "@fontsource/dm-sans/files/dm-sans-latin-600-normal.woff2?url";
 import "../styles/global.css";
@@ -39,7 +37,7 @@ const locales: Record<Lang, string> = {
 const heroPreload = await getImage({
   src: HERO_IMAGE,
   widths: [768, 1280, 1920],
-  format: "avif",
+  format: "webp",
   quality: 72,
 });
 
@@ -91,8 +89,8 @@ const schemaData = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href={cormorant700Url} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={cormorant500Url} />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={cormorant500ItalicUrl} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={dmSans400Url} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={dmSans600Url} />
     <script is:inline>
@@ -102,7 +100,7 @@ const schemaData = {
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
-    <link rel="preload" as="image" href={heroPreload.src} type="image/avif" fetchpriority="high" imagesrcset={heroPreload.srcSet.attribute} imagesizes="100vw" />
+    <link rel="preload" as="image" href={heroPreload.srcSet.values[0]?.url ?? heroPreload.src} type="image/webp" fetchpriority="high" imagesrcset={heroPreload.srcSet.attribute} imagesizes="100vw" />
 
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang="nl" href={`${baseUrl}/nl/`} />
@@ -147,6 +145,30 @@ const schemaData = {
         document.querySelectorAll("[data-animate]").forEach((el) => observer.observe(el));
       } else {
         document.querySelectorAll("[data-animate]").forEach((el) => el.classList.add("animate-visible"));
+      }
+
+      // Switch #about from content-visibility:hidden to auto after LCP is recorded.
+      // This keeps About's style/layout out of the LCP critical path (it sits at ~748px,
+      // within Chrome's ~1218px rendering threshold for a 812px mobile viewport).
+      {
+        let ready = false;
+        const go = (): void => {
+          if (!ready) {
+            ready = true;
+            document.getElementById("about")?.classList.add("cv-ready");
+          }
+        };
+        if ("PerformanceObserver" in window) {
+          const po = new PerformanceObserver((_list, obs) => { go(); obs.disconnect(); });
+          try {
+            po.observe({ type: "largest-contentful-paint", buffered: true });
+          } catch (_) {
+            go();
+          }
+        } else {
+          go();
+        }
+        setTimeout(go, 2000);
       }
     </script>
   </body>

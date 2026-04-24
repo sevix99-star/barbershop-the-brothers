@@ -23,7 +23,7 @@ const stripe = tx.hero.stripe;
       alt=""
       widths={[768, 1280, 1920]}
       sizes="100vw"
-      format="avif"
+      format="webp"
       class="h-full w-full object-cover object-center"
       loading="eager"
       fetchpriority="high"
@@ -48,7 +48,7 @@ const stripe = tx.hero.stripe;
   <div class="relative z-[2] mx-auto grid w-full max-w-wrap gap-16 px-6 pb-[120px] pt-24 md:grid-cols-[1fr_auto] md:items-end md:gap-16 md:px-12 md:pb-[90px]">
     <div>
       <div
-        class="hero-animate mb-7 flex items-center gap-[18px] font-cond text-[13px] uppercase tracking-[0.42em] text-gold"
+        class="hero-anim-init mb-7 flex items-center gap-[18px] font-cond text-[13px] uppercase tracking-[0.42em] text-gold"
         style="animation-delay: 0ms;"
       >
         <span class="h-px w-14 bg-gold/70" aria-hidden="true"></span>
@@ -66,7 +66,7 @@ const stripe = tx.hero.stripe;
         </span>
       </h1>
 
-      <div class="hero-animate mt-11 flex flex-wrap gap-[14px]" style="animation-delay: 400ms;">
+      <div class="hero-anim-init mt-11 flex flex-wrap gap-[14px]" style="animation-delay: 400ms;">
         <a href={`/${lang}/#booking`} class="btn btn-gold">
           {t(lang, "hero.ctaPrimary")} <span class="arrow">→</span>
         </a>
@@ -77,7 +77,7 @@ const stripe = tx.hero.stripe;
     </div>
 
     <aside
-      class="hero-animate flex min-w-[260px] flex-col gap-[18px] border-l border-gold-soft px-0 py-[4px] pl-5"
+      class="hero-anim-init flex min-w-[260px] flex-col gap-[18px] border-l border-gold-soft px-0 py-[4px] pl-5"
       style="animation-delay: 600ms;"
     >
       <div>
@@ -130,4 +130,28 @@ const stripe = tx.hero.stripe;
   .hero em {
     font-style: italic;
   }
+
+  .hero-anim-init {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-anim-init {
+      opacity: 1;
+    }
+  }
 </style>
+
+<script>
+  function startHeroAnims() {
+    document.querySelectorAll<HTMLElement>(".hero-anim-init").forEach((el) => {
+      el.classList.replace("hero-anim-init", "hero-animate");
+    });
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    startHeroAnims();
+  } else {
+    requestAnimationFrame(() => requestAnimationFrame(startHeroAnims));
+  }
+</script>
