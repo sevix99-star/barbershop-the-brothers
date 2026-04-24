@@ -23,12 +23,6 @@ const { lang } = Astro.props;
   </svg>
 </button>
 
-<style is:global>
-  [data-theme="light"] #icon-sun { display: none; }
-  [data-theme="dark"] #icon-moon { display: none; }
-  :root:not([data-theme]) #icon-moon { display: none; }
-</style>
-
 <script>
   const btn = document.getElementById("theme-toggle");
   btn?.addEventListener("click", () => {

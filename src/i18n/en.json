@@ -270,7 +270,7 @@
   "ui": {
     "toggleTheme": "Toggle theme",
     "floatingCta": "Book now →",
-    "floatingCtaLabel": "Book an appointment at Barbershop The Brothers",
+    "floatingCtaLabel": "Book now — make an appointment at Barbershop The Brothers",
     "whatsappLabel": "Send us a WhatsApp message",
     "loadMap": "Load map (requires cookies)"
   },

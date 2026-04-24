@@ -15,7 +15,7 @@
   --color-gold-hover: #6A5218;
   --color-ink: #1A1008;
   --color-ink-dim: #5A4A35;
-  --color-ink-mute: #9A8A72;
+  --color-ink-mute: #7A6A52;
   --color-text-primary: #1A1008;
   --color-text-secondary: #5A4A35;
   --color-text-muted: #9A8A72;
@@ -36,7 +36,7 @@
   --color-gold-hover: #E2C06B;
   --color-ink: #F5F5F0;
   --color-ink-dim: #A8A59A;
-  --color-ink-mute: #6E6B62;
+  --color-ink-mute: #8B8780;
   --color-text-primary: #F5F5F0;
   --color-text-secondary: #A8A59A;
   --color-text-muted: #6E6B62;
@@ -46,7 +46,7 @@
 #home {
   --color-ink: #F5F5F0;
   --color-ink-dim: #A8A59A;
-  --color-ink-mute: #6E6B62;
+  --color-ink-mute: #8B8780;
   --color-gold: #C9A84C;
   --color-gold-soft: #8E7633;
 }
@@ -65,7 +65,7 @@
   --color-gold-hover: #E2C06B;
   --color-ink: #F5F5F0;
   --color-ink-dim: #A8A59A;
-  --color-ink-mute: #6E6B62;
+  --color-ink-mute: #8B8780;
   --color-text-primary: #F5F5F0;
   --color-text-secondary: #A8A59A;
   --color-text-muted: #6E6B62;
@@ -312,6 +312,11 @@
     margin-left: 0;
   }
 }
+
+/* ---------- Theme toggle icon visibility ---------- */
+[data-theme="light"] #icon-sun { display: none; }
+[data-theme="dark"] #icon-moon { display: none; }
+:root:not([data-theme]) #icon-moon { display: none; }
 
 /* ---------- Scroll reveal ---------- */
 [data-animate] {
