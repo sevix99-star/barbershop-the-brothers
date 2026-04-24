@@ -8,6 +8,10 @@ import "@fontsource/cormorant-garamond/700.css";
 import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/500.css";
 import "@fontsource/dm-sans/600.css";
+import cormorant700Url from "@fontsource/cormorant-garamond/files/cormorant-garamond-latin-700-normal.woff2?url";
+import cormorant500Url from "@fontsource/cormorant-garamond/files/cormorant-garamond-latin-500-normal.woff2?url";
+import dmSans400Url from "@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2?url";
+import dmSans600Url from "@fontsource/dm-sans/files/dm-sans-latin-600-normal.woff2?url";
 import "../styles/global.css";
 import { getImage } from "astro:assets";
 import { HERO_IMAGE } from "../config/images";
@@ -87,6 +91,10 @@ const schemaData = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={cormorant700Url} />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={cormorant500Url} />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={dmSans400Url} />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href={dmSans600Url} />
     <script is:inline>
       (function(){var t=localStorage.getItem('barbershop-theme'),s=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t||s)})();
     </script>
