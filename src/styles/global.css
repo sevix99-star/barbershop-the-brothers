@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Use .dark class on <html> as the dark-mode selector for Tailwind dark: variants */
+@variant dark (&:where(.dark, .dark *));
+
 /* ---- Light theme ---- */
 [data-theme="light"] {
   --color-bg: #F7F3ED;
@@ -314,9 +317,13 @@
 }
 
 /* ---------- Theme toggle icon visibility ---------- */
+/* data-theme attribute approach (set by init script + toggle) */
 [data-theme="light"] #icon-sun { display: none; }
 [data-theme="dark"] #icon-moon { display: none; }
 :root:not([data-theme]) #icon-moon { display: none; }
+/* .dark class aliases — kept in sync by the toggle script */
+html.dark #icon-moon { display: none; }
+html:not(.dark) #icon-sun { display: none; }
 
 /* ---------- Scroll reveal ---------- */
 [data-animate] {

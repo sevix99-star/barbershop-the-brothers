@@ -24,10 +24,14 @@ const { lang } = Astro.props;
 </button>
 
 <script>
-  const btn = document.getElementById("theme-toggle");
-  btn?.addEventListener("click", () => {
-    const next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("barbershop-theme", next);
+  // querySelectorAll handles both the desktop and mobile instances of this button.
+  // getElementById returns only the first match, leaving the mobile drawer button inert.
+  document.querySelectorAll("#theme-toggle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.toggle("dark");
+      const next = isDark ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("barbershop-theme", next);
+    });
   });
 </script>

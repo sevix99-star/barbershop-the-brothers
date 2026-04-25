@@ -88,14 +88,14 @@ const schemaData = {
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
+    <script is:inline>
+      (function(){var t=localStorage.getItem('barbershop-theme'),th=t||'dark';document.documentElement.setAttribute('data-theme',th);if(th==='dark')document.documentElement.classList.add('dark');})();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={cormorant500Url} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={cormorant500ItalicUrl} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={dmSans400Url} />
     <link rel="preload" as="font" type="font/woff2" crossorigin href={dmSans600Url} />
-    <script is:inline>
-      (function(){var t=localStorage.getItem('barbershop-theme'),s=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t||s)})();
-    </script>
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
